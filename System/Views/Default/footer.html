@@ -1,0 +1,91 @@
+   
+    <footer>
+        
+        <p>Copyright</p>
+    </footer>
+
+
+    <!-- POPUP -->
+    <div id="pop_up">
+        <div id="pop_up_titulek">
+            <div>
+                <h2 id="titulek-registrace">Pop Up titulek</h2>
+            </div>
+            
+            <img onclick="closeObject('#pop_up');" src="../Resource/images/icons/close.svg" alt="">
+            
+        </div>
+        <div id="pop_up_body">
+            
+            <div id="pop_up_body_content">
+                <!-- obsah bude urcen javascript funkci podle toho jaky button bude zmacknut -->
+
+                <!-- SEKCE 1 -->
+
+                <div class="pop_up_section" id="pop_up_section1">
+                    <!-- REGISTRACNI FORMULAR UZIVATELE -->
+                    <div class="form_wrapper">
+
+                        <form  method="POST" class="register_form" enctype="multipart/form-data">
+                            <div class="input_field_wrapper">
+                                <label for="register_" class="login_label" >Jméno</label>
+                                <!-- <br> -->
+                                <input id="register_name" type="text" name="register_name" required>
+                            </div>
+
+                            <div class="input_field_wrapper">
+                                <label for="register_last_name" class="login_label" >Přijmení</label>
+                                <!-- <br> -->
+                                <input id="register_last_name" type="text" name="register_last_name" required>
+                            </div>
+            
+                            <div class="input_field_wrapper">
+                                <label for="register_email" class="login_label" >Email</label>
+                                <!-- <br> -->
+                                <input id="register_email" type="email" name="register_email" required>
+                            </div>
+            
+                            <div class="input_field_wrapper">
+                                <label for="register__password" class="login_label">Heslo</label>
+                                <!-- <br> -->
+                                <input id="register_password" type="password" name="register_password" minlength="6" maxlength="20" required>
+                            </div>
+
+                            <div class="input_field_wrapper">
+                                <label for="roles" class="login_label" >Role</label>
+                                <select id='roles'>
+
+                                </select>
+                            </div>
+                            
+                            
+                        </form>
+                        <button id="register_button" class="btn" >Uložit</button>
+                        
+                    </div>
+
+                </div>
+
+                <!-- SEKCE 2 -->
+
+                <div class="pop_up_section" id="pop_up_section2">
+
+                </div>
+               
+
+                <!-- VALIDATION ERROR MESSAGE -->
+                <label class="error message" id="login_error_message"></label>
+            </div>
+        </div>
+
+    </div>
+    <div id="slide_down">
+        <div id="slide_down_button_wrapper">
+            <button id="comfirm_btn" class="table_btn edit" onclick="slideUp();">Zrušit</button>
+            <button id="delete_user_btn" class="table_btn delete" onclick="deleteUser();">Delete</button>
+        </div>
+    </div>
+    
+    
+</body>
+</html>
