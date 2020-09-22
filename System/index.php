@@ -12,6 +12,11 @@ if(isset($url[1])){
     $method =$url[1];
     }
 }
+if(isset($url[2])){
+    if($url[1] != ''){
+       $params =$url[2];
+    }
+}
 spl_autoload_register(function($class){
 if (file_exists(LBS.$class.".php")) {
 require LBS.$class.".php";
@@ -36,7 +41,12 @@ if (file_exists($controllersPath)) {
     $controller = new $controller();
     if(isset($method)){
         if (method_exists($controller, $method)) {
-            $controller->{$method}();
+            if (isset($params)) {
+				//ejecutamos el meto que resiva el parametro
+				$controller->{$method}($params);
+			}else {
+				$controller->{$method}();
+			}
         }else{
             $error ->error();
         }
