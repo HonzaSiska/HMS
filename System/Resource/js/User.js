@@ -212,6 +212,7 @@ class User {
             document.querySelector('footer').style.display="none";
             document.querySelector('header').style.display="none";
             document.querySelector("#slide_down").style.display="none";
+            document.querySelector("#aside").style.display="none";
         }
     }
     sessionClose() {
