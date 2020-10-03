@@ -9,6 +9,7 @@ class Users_model extends Connect{
      return $response = $this->db->select1("*","roles",null,null);
         var_dump($response = $this->db->select1("*","roles",null,null));
     }
+    
     function getUsers($columns){
     
         $response = $this->db->select1($columns, "users", null, null);
@@ -20,6 +21,19 @@ class Users_model extends Connect{
             return $response;
         }
     }
+    function selectUser($columns){
+    
+        $response = $this->db->select1($columns, "users", null, null);
+        if(is_array($response)){
+            
+            return $response = $response['results'];
+            
+        }else{
+            return $response;
+        }
+    }
+
+
     function getUser($idUser){
         $where = " WHERE IdUser = :idUser";
         $response = $this->db->select1("*", "users", $where, array("idUser"=>$idUser));

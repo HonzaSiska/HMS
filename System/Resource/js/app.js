@@ -32,6 +32,9 @@ var getUsers = () =>{
   window.location.href = URL + "Users/users";
   
 };
+// var selectUser = () => {
+//   this.selectUser();
+// }
 
 var cashRegister = () => {
   window.location.href = URL + "CashRegister/cashRegister";
@@ -97,6 +100,7 @@ var openObject = (object, data) => {
 };
 //UNIVERSAL FUNCTION TO CLOSE ASIDE PANEL
 var closeAside = (object) => {
+ 
   switch (object) {
     
     case "#aside":
@@ -104,7 +108,7 @@ var closeAside = (object) => {
         width:0,
         opacity: 0,
         padding: 0,
-      },500);
+      },300);
       break;
   
     default:
@@ -112,22 +116,36 @@ var closeAside = (object) => {
   }
 };
 
-//UNIVERSAL FUNCTION TO CLOSE ASIDE PANEL
-var openAside = (object) => {
+//UNIVERSAL FUNCTION TO OPEN ASIDE PANEL, THE PARAMETER DETERMINSE WHAT ASIDE PANEL IS OPENED
+var openAside = (trigger) => {
   w = document.documentElement.clientWidth;
-  switch (object) {
-    case "#aside":
-      $("#aside").animate({
-        width: w < 650 ? 300 : 400,
-        opacity: 1,
-        padding: 20,
-      },500);
+  $("#aside").animate({
+    width: w < 650 ? 300 : 400,
+    opacity: 1,
+    padding: 20,
+  },300);
+  
+  switch (trigger) {
+    case "#openAside":
+      let object = document.querySelector('#asideWrapper');
+      let data = "<div class='asideWrapperSection'><h2>Transakce</h2>";
+      data += "<hr><br><label for='datum' class='login_label' >Datum</label><input type='text' id='datum' placeholder='Datum'>"
+      data +="<label for='castka' class='login_label' >Částka</label><input type='text' id='castka' placeholder='Částka'></div>";
+      data += "<td><label  class='login_label' >Uživatel</label><select id='selectNames'></select></td>"; 
+      data += "<button class='table_btn edit aside_button' >Vklad</button>"
+      data +="<button class='table_btn delete aside_button'>Výdaj</button>";
+      data +="</div>";
+      object.innerHTML=data;
+      user.selectUser();
       break;
   
     default:
       break;
   }
+ 
 };
+
+
 // -----------------------------------------------------------------------------------------------------------
 var sessionClose = () => {
   user.sessionClose();
@@ -143,6 +161,10 @@ var dataUser = (data)=> {
   getRoles();
   user.editUser(data);
 };
+
+
+
+
 
 
 $().ready(()=>{
@@ -161,7 +183,6 @@ $().ready(()=>{
   });
   
 
-  
   
     
 })

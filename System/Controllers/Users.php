@@ -26,7 +26,7 @@ class Users extends Controllers {
             $user = Session::getSession("User");
             $result="";
             $count = 0;
-            $columns = "IdUser, Name, Last_name, Email, Email, Image, Role, Phone";
+            $columns = "IdUser, Name, Last_name, Email, Image, Role, Phone";
             if(null != $user){
                 $data = $this->model->getUsers($columns);
                 //var_dump($data);
@@ -60,6 +60,30 @@ class Users extends Controllers {
             }
         }
     }
+
+    public function selectUser(){
+        // echo  "getUsers()";
+        if(Session::getSession('User')['Role'] == "admin"){
+            $user = Session::getSession("User");
+            $result="";
+            $count = 0;
+            $columns = "IdUser, Name, Last_name";
+            if(null != $user){
+                $data = $this->model->getUsers($columns);
+                //var_dump($data);
+                if(is_array($data)){
+                    
+                    // echo $dataUser;
+                    echo json_encode($data);
+                }else{
+                    echo $data;
+                }
+            }
+        }
+    }
+
+
+
     public function getRoles(){
     
         $data = $this->model->getRoles();

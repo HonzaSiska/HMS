@@ -165,19 +165,51 @@ class User {
             URL + "Users/getUsers",
             {},
             (response)=>{
-                // alert(response);
+                
                 document.getElementById("table_result").innerHTML = response;
             }
         )
     }   
+    selectUser = () =>{
+        $.post(
+            URL + "Users/selectUser",
+            {},
+            (response)=>{
+                try{
+                    console.log(JSON.parse(response));
+                    let item = JSON.parse(response);
+                    console.log(item[2].Name);
+                    let count = 1;
+                    if(0 < item.length){
+                        document.getElementById("selectNames").options[0] = new Option ("Vyber uživatele",0);
+                        
+                        for(let i = 0; i < item.length; i++)
+                        {
+                            let fullName = item[i].Name + " " + item[i].Last_name;
+                            console.log(fullName);
+                            document.getElementById("selectNames").options[i+1] = new Option(fullName, item[i].IdUser);
+                            document.getElementById('selectNames').selectedIndex = 0;
+                            count++;
+                            
+                        }
+                        // $('#selectNames').formSelect();
+                    }
+                }catch(error){
+                    alert(error);
+                }
+                
+              
+            }
+        )
+    }
      
-   /////DELETE USER////////////////////////////
-   deleteUser = (data) => {
-       if(JSON.parse(localStorage.getItem("user"))['IdUser'] == data['IdUser']){
+   //DELETE USER
+    deleteUser = (data) => {
+        if(JSON.parse(localStorage.getItem("user"))['IdUser'] == data['IdUser']){
             alert("Nemůžeš smazat sám sebe");
             
 
-       }else{
+        }else{
             console.log(JSON.parse(localStorage.getItem("user"))['IdUser'], "---",data['IdUser']);
             $.post(
                 URL + "Users/deleteUser",
@@ -194,10 +226,8 @@ class User {
                     }
                     
                 });
-       }
-       
-           
-   }
+        } 
+    }
 
 
     

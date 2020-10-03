@@ -84,10 +84,12 @@ header {
     
   
 }
+
 aside{
+    border-top: 1px solid black;
     position:absolute;
     width: 0px;
-    height:calc(100%-115px);
+    height:calc(100% - 115px);
     background: white;
     overflow: hidden;
     padding: 0px;
@@ -96,6 +98,15 @@ aside{
     -moz-box-shadow: 0px 0px 17px -3px rgba(117,76,240,1);
     box-shadow: 0px 0px 17px -3px rgba(117,76,240,1);
     z-index: 1000;
+    
+    
+}
+.asideOpener{
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    padding: 10px;
+   
     
 }
 #menu_icon{
@@ -124,7 +135,7 @@ aside{
 
 .title{
 
-overflow:hidden;
+    overflow:hidden;
 
 }
 .form_wrapper{
@@ -151,38 +162,39 @@ input, select{
     -moz-box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
     box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
     color: #7763aa;
-  }
-  input:focus{
-    
+}
+input:focus{
+
     background: #252423;
     color: #7763aa;
-   
-  }
-  .input_field_wrapper{
-      width:100%;
-      margin: auto;
-  }
-  label{
-      text-align: left;
-      color:#754cf0;;
-      padding: 10px 0;
-      margin: 10px 0;
-  }
-  .btn{
+
+}
+.input_field_wrapper{
+    width:100%;
+    margin: auto;
+}
+label{
+    text-align: left;
+    color:#754cf0;;
+    padding: 10px 0;
+    margin: 10px 0;
+}
+.btn{
     background: #754cf0;;
     border: 1px solid#754cf0;
     border-radius: 20px;
     width: 100%;
     padding: 5px 5px;
-    
+
     color:white;
     -webkit-box-shadow: 0px 0px 17px -3px rgba(117,76,240,1);
     -moz-box-shadow: 0px 0px 17px -3px rgba(117,76,240,1);
     box-shadow: 0px 0px 17px -3px rgba(117,76,240,1);
-    
-    
-    
-  }
+
+
+
+}
+
 footer{
     background-color: #754cf0;
 }
@@ -387,6 +399,11 @@ tbody tr:last-child td:last-child{
     border: 1px solid white;;
     color:white;
 }
+.aside_button{
+    width: 100%;
+    margin: 10px 0;
+    
+}
 #pop_up_section1, #pop_up_section2, #pop_up_section3, #pop_up_section4, #pop_up_section5{
     display:none;
 }
@@ -409,27 +426,5 @@ tbody tr:last-child td:last-child{
         width: 60%;
     }
   }
-    aside{
-        border-top: 1px solid black;
-        position:absolute;
-        width: 0px;
-        height:calc(100% - 115px);
-        background: white;
-        overflow: hidden;
-        padding: 0px;
-        background: white;
-        -webkit-box-shadow: 0px 0px 17px -3px rgba(117,76,240,1);
-        -moz-box-shadow: 0px 0px 17px -3px rgba(117,76,240,1);
-        box-shadow: 0px 0px 17px -3px rgba(117,76,240,1);
-        z-index: 1000;
-        
-        
-    }
-    .asideOpener{
-        width: 80px;
-        height: 80px;
-        margin: auto;
-        padding: 10px;
-       
-        
-    }
+
+

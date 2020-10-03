@@ -3,4 +3,5 @@ class CashRegister {
         this.function = 0;
     }
     
+    
 }
