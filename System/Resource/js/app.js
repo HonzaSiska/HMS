@@ -2,7 +2,7 @@ var dataUser = null;
 var user = new User();
 var uploadpicture = new Uploadpicture();
 var passUserData = null;
-var cashRegister = new CashRegister();
+var cashReg = new CashRegister();
 
 
 var loginUser = () => {
@@ -32,9 +32,7 @@ var getUsers = () =>{
   window.location.href = URL + "Users/users";
   
 };
-// var selectUser = () => {
-//   this.selectUser();
-// }
+
 
 var cashRegister = () => {
   window.location.href = URL + "CashRegister/cashRegister";
@@ -46,6 +44,16 @@ var deleteUser = () => {
     passUserData = null;
 
 };
+
+let insertTrans = (func) => {
+  
+  cashReg.insertTrans(func);
+  
+  //closeAside("#aside");
+
+};
+ 
+
 
 
 var goMenu = () => {
@@ -128,13 +136,16 @@ var openAside = (trigger) => {
   switch (trigger) {
     case "#openAside":
       let object = document.querySelector('#asideWrapper');
-      let data = "<div class='asideWrapperSection'><h2>Transakce</h2>";
-      data += "<hr><br><label for='datum' class='login_label' >Datum</label><input type='text' id='datum' placeholder='Datum'>"
+      let data = "<form id='transaction_form' method='POST' enctype='multipart/form-data' onsubmit='return false'> ";
+      data += "<div class='asideWrapperSection'><h2 id='draggable'>Transakce</h2>";
+      data += "<hr><br><label for='datum' class='login_label' >Datum</label><input type='date' id='datum' class='ui-widget-conten' placeholder='Datum'>"
       data +="<label for='castka' class='login_label' >Částka</label><input type='text' id='castka' placeholder='Částka'></div>";
       data += "<td><label  class='login_label' >Uživatel</label><select id='selectNames'></select></td>"; 
-      data += "<button class='table_btn edit aside_button' >Vklad</button>"
-      data +="<button class='table_btn delete aside_button'>Výdaj</button>";
+      data += "<label id='transError'></label>";
+      data += "<button type='submit' onclick='insertTrans(\"deposit\");' id='vklad'  class='table_btn edit aside_button'>Vklad</button>"
+      data +="<button  class='table_btn delete aside_button'>Výdaj</button>";
       data +="</div>";
+      data += "</form>";
       object.innerHTML=data;
       user.selectUser();
       break;
@@ -167,22 +178,28 @@ var dataUser = (data)=> {
 
 
 
+
 $().ready(()=>{
   
      
   let URLactual = window.location.pathname;
-  user.userData(URLactual);// CONTROLA JESTLI JSME NA HLAVNI STRANE,JESTLI ANO,SHOVEJ HEADER atd.
+  user.userData(URLactual);// CONTROLA JESTLI JSME NA HLAVNI STRANE,JESTLI ANO,ScHOVEJ HEADER atd.
 
   if(URLactual == PATHNAME+"Users/users"){
   user.getUsers();
   }
+
   $("#register_button").click((e)=> {
     e.preventDefault();
+    
     user.registerUser();
  
   });
+ 
   
-
-  
+ 
     
 })
+
+
+

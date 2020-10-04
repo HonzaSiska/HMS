@@ -15,8 +15,17 @@ class CashRegister extends Controllers {
         }else{
              header("Location:".URL."Principal/principal");
        }
-       
+    }
 
+
+    public function insertTrans(){
+        if(Session::getSession('User')['Role'] == "admin"){
+            
+            echo $_POST['type'];
+             
+        }else{
+             header("Location:".URL."CashRegister/cashRegister");
+       }
     }
 
 
