@@ -18,6 +18,22 @@ class Anonymous
             }
         };
     }
+    public function insertTransClass(array $array){
+        return new class($array){
+            var $Date;
+            var $Amount;
+            var $UserValue;
+            var $Type;
+            function __construct($array)
+            {
+                $this->Date = $array[0];
+                $this->Amount = $array[1];
+                $this->UserValue = $array[2];
+                $this->Type = $array[3];
+            }
+        };
+    }
 }
+
 //$_POST['name'],$_POST['lastName'],$_POST['email'],$_POST['password'],$_POST['role']
 ?>

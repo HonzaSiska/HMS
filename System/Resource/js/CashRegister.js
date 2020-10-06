@@ -2,6 +2,11 @@ class CashRegister {
     constructor(){
         this.function = 0;
     }
+
+    getTrans()
+    {
+        console.log ("GET TRANS");
+    }
     
     insertTrans(func){
         let error = document.querySelector("#transError");
@@ -13,10 +18,14 @@ class CashRegister {
        
         // alert(date);
         if(date != ""){
-            if(amount != ""){
-                if(!isNaN(amount)){
-                    if(amount != 0 && amount !=""){
-                        if(userValue != 0){
+            if(amount != "")
+            {
+                if(!isNaN(amount))
+                {
+                    if(amount != 0 && amount !="")
+                    {
+                        if(userValue != 0)
+                        {
                             $.post(
                                 URL + "CashRegister/insertTrans",
                                 {
@@ -25,23 +34,34 @@ class CashRegister {
                                     userValue: userValue,
                                     type : func
                                 },
-                                (response)=>{
-                                    alert(response);
-                                    closeAside("#aside");
+                                (response)=>
+                                {   
+                                    if(response == 0)
+                                    {
+                                        closeAside("#aside");
+                                    }else{
+                                        error.innerHTML = "Transakce nemohla byt provedena !!";
+                                    }
+                                    
                                 })
-                        }else{
+                        }else
+                        {
                             error.innerHTML="Vyber uživatele !!"; 
                         }
-                    }else{
+                    }else
+                    {
                         error.innerHTML="Zadej částku !!"; 
                     }
-                }else{
+                }else
+                {
                     error.innerHTML="částka je v neplatném formátu , zadej číslo !!";   
                 }
-            }else{
+            }else
+            {
                 error.innerHTML="Zadej částku !!";   
             }
-        }else{
+        }else
+        {
             error.innerHTML="Zadej datum !!";  
         }
        

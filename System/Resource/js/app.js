@@ -36,6 +36,7 @@ var getUsers = () =>{
 
 var cashRegister = () => {
   window.location.href = URL + "CashRegister/cashRegister";
+  // cashReg.getTrans();
   
 }
 var deleteUser = () => {
@@ -139,11 +140,11 @@ var openAside = (trigger) => {
       let data = "<form id='transaction_form' method='POST' enctype='multipart/form-data' onsubmit='return false'> ";
       data += "<div class='asideWrapperSection'><h2 id='draggable'>Transakce</h2>";
       data += "<hr><br><label for='datum' class='login_label' >Datum</label><input type='date' id='datum' class='ui-widget-conten' placeholder='Datum'>"
-      data +="<label for='castka' class='login_label' >Částka</label><input type='text' id='castka' placeholder='Částka'></div>";
+      data +="<label for='castka' class='login_label' >Částka</label><input type='text' id='castka' ></div>";
       data += "<td><label  class='login_label' >Uživatel</label><select id='selectNames'></select></td>"; 
       data += "<label id='transError'></label>";
       data += "<button type='submit' onclick='insertTrans(\"deposit\");' id='vklad'  class='table_btn edit aside_button'>Vklad</button>"
-      data +="<button  class='table_btn delete aside_button'>Výdaj</button>";
+      data +="<button  type='submit' onclick='insertTrans(\"debit\");' class='table_btn delete aside_button'>Výdaj</button>";
       data +="</div>";
       data += "</form>";
       object.innerHTML=data;
@@ -185,8 +186,13 @@ $().ready(()=>{
   let URLactual = window.location.pathname;
   user.userData(URLactual);// CONTROLA JESTLI JSME NA HLAVNI STRANE,JESTLI ANO,ScHOVEJ HEADER atd.
 
-  if(URLactual == PATHNAME+"Users/users"){
+  if(URLactual == PATHNAME+"Users/users")
+  {
   user.getUsers();
+  }
+  if(URLactual == PATHNAME+"CashRegister/cashRegister")
+  {
+    cashReg.getTrans();
   }
 
   $("#register_button").click((e)=> {
