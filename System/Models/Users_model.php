@@ -7,7 +7,7 @@ class Users_model extends Connect{
     }
     function getRoles(){
      return $response = $this->db->select1("*","roles",null,null);
-        var_dump($response = $this->db->select1("*","roles",null,null));
+        // var_dump($response = $this->db->select1("*","roles",null,null));
     }
     
     function getUsers($columns){

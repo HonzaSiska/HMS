@@ -18,7 +18,43 @@ class CashRegister extends Controllers {
        }
     }
     
+    public function getTrans()
+    {
+        if(Session::getSession('User')['Role'] == "admin")
+        {
+            $user = Session::getSession("User");
+            $result = "";
+            $count = 0;
+            $columns ="*";
+            if(null != $user)
+            
+            {
+               
+                $receivedDate =  strtotime($_POST['datum']);
+                $date = date('Y-m-d', $receivedDate);
+                echo $date;
+                // zitra zkusit jestli se da vyhledat podle roku a mesice
 
+                // $month = $_POST['datum'] == null ? date('m', strtotime($date)) : date('m', strtotime($_POST['datum']));
+
+                // $year = $_POST['datum'] == null ? date('Y', strtotime($date)) : date('Y', strtotime($_POST['datum']));
+
+
+                // $data = $this->model->getTrans($columns);
+                // if(is_array($data))
+                // {
+                //     foreach($data as $item)
+                //     {
+                //         $result .= "<tr><td>".$item["TransId"]."</td></tr>";
+                //     }
+                //     echo $result;
+                // }
+                
+                 
+                
+            }
+        }
+    }
     public function insertTrans(){
         $user = Session::getSession("User");
         if(null != $user){

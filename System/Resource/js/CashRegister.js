@@ -3,9 +3,29 @@ class CashRegister {
         this.function = 0;
     }
 
-    getTrans()
+    getTrans(datum)
     {
-        console.log ("GET TRANS");
+        if(datum == null)
+        {
+            datum = new Date();
+        }else{
+            datum = new Date(datum);
+        }
+        // datum.setDate( datum.getDate() - 6 ); reference
+        
+        datum = (datum.getFullYear() + "-" + datum.getMonth() + "-" + datum.getDate());
+        
+        $.post(
+            URL + "CashRegister/getTrans",
+            
+            {
+                datum: datum,
+            },
+            (response) => {
+                let output = document.getElementById("table_trans_body");
+                output.innerHTML = response;
+            }
+        )
     }
     
     insertTrans(func){

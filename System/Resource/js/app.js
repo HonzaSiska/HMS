@@ -192,7 +192,7 @@ $().ready(()=>{
   }
   if(URLactual == PATHNAME+"CashRegister/cashRegister")
   {
-    cashReg.getTrans();
+    cashReg.getTrans(null);
   }
 
   $("#register_button").click((e)=> {

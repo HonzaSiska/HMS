@@ -8,6 +8,18 @@ class CashRegister_model extends Connect
         
     }
 
+    function getTrans($columns)
+    {
+        $response = $this->db->select1($columns,"transactions", null, null);
+        if(is_Array($response))
+        {
+            return $response = $response['results'];
+        }else
+        {
+            echo $response;
+        }
+    }
+
     function insertTrans($array)
         {
             $value = " (Date,IdUser,Credit,Debit) VALUES(:Date,:IdUser,:Credit,:Debit)";  
