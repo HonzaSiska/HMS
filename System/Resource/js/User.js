@@ -161,12 +161,14 @@ class User {
 
 
     getUsers = () => {
+
         $.post(
             URL + "Users/getUsers",
             {},
             (response)=>{
                 
                 document.getElementById("table_result").innerHTML = response;
+            
             }
         )
     }   
@@ -218,6 +220,7 @@ class User {
      
    //DELETE USER
     deleteUser = (data) => {
+        console.log (JSON.stringify(data));
         if(JSON.parse(localStorage.getItem("user"))['IdUser'] == data['IdUser']){
             alert("Nemůžeš smazat sám sebe");
             

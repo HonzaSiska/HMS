@@ -3,6 +3,7 @@
         public function __construct(){
             Session::start();
             $this->view = new Views();
+            $this->page = new Pagination();
             $this->loadClassmodels();
             
         }

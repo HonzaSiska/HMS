@@ -25,31 +25,53 @@ class CashRegister extends Controllers {
             $user = Session::getSession("User");
             $result = "";
             $count = 0;
+            $credit = 0;
+            $debit = 0;
             $columns ="*";
             if(null != $user)
             
             {
                
                 $receivedDate =  strtotime($_POST['datum']);
-                $date = date('Y-m-d', $receivedDate);
-                echo $date;
-                // zitra zkusit jestli se da vyhledat podle roku a mesice
+                // $date = date('Y-m-d', $receivedDate);
+                // echo "Received Month: ".date('m', $receivedDate);
 
+                $data = $this->model->getTrans($columns, $receivedDate, $this->page);
+               
                 // $month = $_POST['datum'] == null ? date('m', strtotime($date)) : date('m', strtotime($_POST['datum']));
 
                 // $year = $_POST['datum'] == null ? date('Y', strtotime($date)) : date('Y', strtotime($_POST['datum']));
+                $allTrans = $this->model->getAllTrans("SUM(Credit) - SUM(Debit)");
+                $sum = ($allTrans[0]["SUM(Credit) - SUM(Debit)"]);
+                // $sum = $allTrans['Credit'] - $allTrans['Credit'];
+                // echo $sum;
 
+                if(is_array($data))
+                {
+                    foreach($data as $item)
+                    {
+                        $result .= '<tr>';
+                        $result .= '<td>'.$item["TransId"].'<input type="hidden" value="'.$item["TransId"].'"</td>';
+                        $result .= '<td>'.$item["Date"].'</td>';
+                        $result .= '<td>'.$item["IdUser"].'</td>';
+                        $result .= '<td>'.$item["Credit"].'</td>';
+                        $result .= '<td>'.$item["Debit"].'</td>';
+                        $result .= "<td><button class='table_btn delete' id='#delete_user_open_slide' onclick='slideDown(".$item['TransId'].", 2);'>Delete</button></td>";
+                        $result .= '</tr>';
+                        $credit += $item["Credit"];
+                        $debit += $item["Debit"];
+                       
+                    }
+                    $diff = $credit - $debit;
+                    $result .= "<tr><td></td><td></td><td>rozdíl<span class='diff'> $diff</span></td><td class='credit'>$credit</td><td class='debit'>$debit</td></tr>";
+                    //echo $result;
+                }
+                $output = array(
+                    "table" => $result,
+                    "sum" => $sum
 
-                // $data = $this->model->getTrans($columns);
-                // if(is_array($data))
-                // {
-                //     foreach($data as $item)
-                //     {
-                //         $result .= "<tr><td>".$item["TransId"]."</td></tr>";
-                //     }
-                //     echo $result;
-                // }
-                
+                );
+                echo json_encode($output);
                  
                 
             }

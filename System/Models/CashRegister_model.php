@@ -8,9 +8,19 @@ class CashRegister_model extends Connect
         
     }
 
-    function getTrans($columns)
-    {
-        $response = $this->db->select1($columns,"transactions", null, null);
+    function getTrans($columns, $date, $model)
+    {   
+
+        $where = " WHERE MONTH(Date) = :Month AND YEAR(Date)= :Year ORDER BY date Desc";
+        $month = date('m', $date);
+        $year = date('Y', $date);
+        $array = array(
+            'Month' => $month,
+            'Year' => $year
+        );
+        $param = $array;
+        
+        $response = $model->paginationByMonth($columns,"transactions",$date,$where,$param);
         if(is_Array($response))
         {
             return $response = $response['results'];
@@ -18,6 +28,23 @@ class CashRegister_model extends Connect
         {
             echo $response;
         }
+        return $response;
+
+
+        // $response = $this->db->select1($columns,"transactions", null, null);
+        // if(is_Array($response))
+        // {
+        //     return $response = $response['results'];
+        // }else
+        // {
+        //     echo $response;
+        // }
+    }
+    public function getAllTrans($columns)
+    {
+        
+        $response = $this->db->select1($columns,'transactions',null,null);
+        return $response = $response['results'];
     }
 
     function insertTrans($array)

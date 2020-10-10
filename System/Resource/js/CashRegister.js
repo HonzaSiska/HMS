@@ -5,15 +5,23 @@ class CashRegister {
 
     getTrans(datum)
     {
-        if(datum == null)
+        datum = "2020,10,1";
+        
+        // datum = datum.getFullYear() + "-" + parseInt(datum.getMonth()+1) + "- 1";
+        
+        if(datum == null || datum == "")
         {
             datum = new Date();
         }else{
             datum = new Date(datum);
         }
+        
+
+        datum = (datum > new Date()) ? new Date(): datum;
         // datum.setDate( datum.getDate() - 6 ); reference
         
-        datum = (datum.getFullYear() + "-" + datum.getMonth() + "-" + datum.getDate());
+        datum = (datum.getFullYear() + "-" + parseInt(datum.getMonth()+1) + "-" + datum.getDate());
+        alert(datum);
         
         $.post(
             URL + "CashRegister/getTrans",
@@ -22,8 +30,13 @@ class CashRegister {
                 datum: datum,
             },
             (response) => {
+                let data = JSON.parse(response);
+                console.log(data);
+                let pokladna = document.getElementById("pokladna_total");
                 let output = document.getElementById("table_trans_body");
-                output.innerHTML = response;
+                pokladna.innerHTML = data.sum;
+                output.innerHTML = data.table;
+                
             }
         )
     }
@@ -59,6 +72,7 @@ class CashRegister {
                                     if(response == 0)
                                     {
                                         closeAside("#aside");
+                                        this.getTrans(null);
                                     }else{
                                         error.innerHTML = "Transakce nemohla byt provedena !!";
                                     }
@@ -87,6 +101,9 @@ class CashRegister {
        
         
 
+    }
+    deleteTrans(data){
+        alert("WORKS"+data);
     }
     
         

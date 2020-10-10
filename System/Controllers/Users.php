@@ -10,7 +10,7 @@ class Users extends Controllers {
         if(Session::getSession('User')['Role'] == "admin"){
             
             $this->view->render($this,"users",null);
-            //  $this->getUsers();
+            //$this->getUsers();
              
         }else{
              header("Location:".URL."Principal/principal");
@@ -20,7 +20,7 @@ class Users extends Controllers {
     }
 
     public function getUsers(){
-    
+        
         // echo  "getUsers()";
         if(Session::getSession('User')['Role'] == "admin"){
             $user = Session::getSession("User");
@@ -29,7 +29,7 @@ class Users extends Controllers {
             $columns = "IdUser, Name, Last_name, Email, Image, Role, Phone";
             if(null != $user){
                 $data = $this->model->getUsers($columns);
-                //var_dump($data);
+                
                 if(is_array($data)){
                     $array = $data;
                     foreach($data as $item){
@@ -43,7 +43,7 @@ class Users extends Controllers {
                         // "<td>".$item['Email']."</td>". 
                         "<td>
                         <button class='table_btn edit' id = 'addUser' onclick='dataUser(".$dataUser.");'>Edit</button>
-                        <button class='table_btn delete' id='#delete_user_open_slide' onclick='slideDown(".$dataUser.");'>Delete</button>
+                        <button class='table_btn delete' id='#delete_user_open_slide' onclick='slideDown(".$dataUser.", 1);'>Delete</button>
                         </td>". 
                         
                         "</tr>"

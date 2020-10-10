@@ -21,6 +21,7 @@ class QueryManager
 
     function select1($attr, $table, $where, $param){
         try{
+            
             $where = $where ?? "";
             $query = "SELECT ".$attr." FROM ".$table.$where;
             $sth = $this->pdo->prepare($query);
@@ -70,5 +71,6 @@ class QueryManager
         $pdo = null;
         
     }
+    
 }
 ?>

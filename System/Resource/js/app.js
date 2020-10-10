@@ -1,7 +1,7 @@
 var dataUser = null;
 var user = new User();
 var uploadpicture = new Uploadpicture();
-var passUserData = null;
+//var passUserData = null;
 var cashReg = new CashRegister();
 
 
@@ -30,6 +30,8 @@ var addUser = () =>{
 
 var getUsers = () =>{
   window.location.href = URL + "Users/users";
+ 
+
   
 };
 
@@ -39,20 +41,23 @@ var cashRegister = () => {
   // cashReg.getTrans();
   
 }
-var deleteUser = () => {
-  
-    user.deleteUser(passUserData);
-    passUserData = null;
+// var deleteUser = (passUserData) => {
+//     console.log(passUserData);
+//     user.deleteUser(passUserData);
+//     // passUserData = null;
 
-};
+// };
 
 let insertTrans = (func) => {
   
   cashReg.insertTrans(func);
-  
-  //closeAside("#aside");
 
+  //closeAside("#aside")
 };
+// var deleteTrans = (data) => {
+//   alert(data);
+//   cashReg.deleteTrans(data);
+// }
  
 
 
@@ -62,11 +67,38 @@ var goMenu = () => {
 };
 
 //SLIDE DOWN POPUP
-var slideDown = (data) => {
+var slideDown = (data, switchData) => {
+  
   $("#slide_down").animate({
     top:0,
     opacity: 1,
   },500);
+  // alert(data); 
+  switch(switchData){
+    case 1:
+      //alert(JSON.stringify(data));
+      data= JSON.stringify(data);
+      var output = "<div id='slide_down_button_wrapper'>";
+      output += "<button id='comfirm_btn' class='table_btn edit' onclick='slideUp();'>Zrušit</button>";
+      output +=`<button id='delete_user_btn' class='table_btn delete' onclick='user.deleteUser(${data});'>Smazat</button>`;
+      output +="</div>";
+      document.getElementById('slide_down').innerHTML = output;
+      break;
+    
+    case 2:
+      
+         
+      var output = "<div id='slide_down_button_wrapper'>";
+      output += "<button id='comfirm_btn' class='table_btn edit' onclick='slideUp();'>Zrušit</button>";
+      output +="<button id='delete_user_btn' class='table_btn delete' onclick='cashReg.deleteTrans("+ data +");'>Smazat</button>";
+      output +="</div>";
+      document.getElementById('slide_down').innerHTML = output;
+      break;
+
+
+    
+      
+  }
   passUserData = data;
 
 };
@@ -186,13 +218,19 @@ $().ready(()=>{
   let URLactual = window.location.pathname;
   user.userData(URLactual);// CONTROLA JESTLI JSME NA HLAVNI STRANE,JESTLI ANO,ScHOVEJ HEADER atd.
 
-  if(URLactual == PATHNAME+"Users/users")
+  //ZMENIT BARVU CASTKY V POKLADNE 
+  
+
+  if(URLactual == PATHNAME + "Users/users")
   {
+  
   user.getUsers();
   }
   if(URLactual == PATHNAME+"CashRegister/cashRegister")
   {
     cashReg.getTrans(null);
+    let output = document.getElementById("pokladna_total");
+  (output.value > 0) ?  output.style.color="green" : output.style.color="green" ;
   }
 
   $("#register_button").click((e)=> {
@@ -202,6 +240,7 @@ $().ready(()=>{
  
   });
  
+
   
  
     

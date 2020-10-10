@@ -13,10 +13,11 @@ class Users_model extends Connect{
     function getUsers($columns){
     
         $response = $this->db->select1($columns, "users", null, null);
+        
         if(is_array($response)){
             
             return $response = $response['results'];
-            
+            var_dump($response);
         }else{
             return $response;
         }
