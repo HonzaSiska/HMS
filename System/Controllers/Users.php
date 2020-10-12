@@ -51,6 +51,7 @@ class Users extends Controllers {
                         $count++;
                         
                     }
+                    $result .= "<tr><td></td><td></td><td></td><td></td><td>Pocet Uživatelů $count</td></tr>";
                     echo $result;
                     
                     

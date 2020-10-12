@@ -5,10 +5,10 @@ class CashRegister {
 
     getTrans(datum)
     {
-        datum = "2020,10,1";
-        
+        //datum = "2020,10,11";
+        // datum = toString(datum);
         // datum = datum.getFullYear() + "-" + parseInt(datum.getMonth()+1) + "- 1";
-        
+        alert(datum);
         if(datum == null || datum == "")
         {
             datum = new Date();
@@ -21,7 +21,7 @@ class CashRegister {
         // datum.setDate( datum.getDate() - 6 ); reference
         
         datum = (datum.getFullYear() + "-" + parseInt(datum.getMonth()+1) + "-" + datum.getDate());
-        alert(datum);
+        //alert(datum);
         
         $.post(
             URL + "CashRegister/getTrans",
@@ -30,12 +30,15 @@ class CashRegister {
                 datum: datum,
             },
             (response) => {
+                console.log(response);
                 let data = JSON.parse(response);
                 console.log(data);
                 let pokladna = document.getElementById("pokladna_total");
                 let output = document.getElementById("table_trans_body");
                 pokladna.innerHTML = data.sum;
                 output.innerHTML = data.table;
+                let nav = document.getElementById("month_nav");
+                nav.innerHTML = data.nav;
                 
             }
         )

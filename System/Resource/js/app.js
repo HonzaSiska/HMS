@@ -26,8 +26,6 @@ var addUser = () =>{
 // -----------------------------------------------------------------------------------------------------------
 
 
-
-
 var getUsers = () =>{
   window.location.href = URL + "Users/users";
  
@@ -58,6 +56,10 @@ let insertTrans = (func) => {
 //   alert(data);
 //   cashReg.deleteTrans(data);
 // }
+
+let getTrans = (data) => {
+  cashReg.getTrans(data);
+}
  
 
 
@@ -70,12 +72,14 @@ var goMenu = () => {
 var slideDown = (data, switchData) => {
   
   $("#slide_down").animate({
-    top:0,
+    // top:0,
+    top: $(window).scrollTop(),
     opacity: 1,
   },500);
-  // alert(data); 
+  
   switch(switchData){
     case 1:
+
       //alert(JSON.stringify(data));
       data= JSON.stringify(data);
       var output = "<div id='slide_down_button_wrapper'>";
@@ -86,8 +90,7 @@ var slideDown = (data, switchData) => {
       break;
     
     case 2:
-      
-         
+
       var output = "<div id='slide_down_button_wrapper'>";
       output += "<button id='comfirm_btn' class='table_btn edit' onclick='slideUp();'>Zrušit</button>";
       output +="<button id='delete_user_btn' class='table_btn delete' onclick='cashReg.deleteTrans("+ data +");'>Smazat</button>";
@@ -95,8 +98,6 @@ var slideDown = (data, switchData) => {
       document.getElementById('slide_down').innerHTML = output;
       break;
 
-
-    
       
   }
   passUserData = data;

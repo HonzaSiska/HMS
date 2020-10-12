@@ -33,29 +33,31 @@ class CashRegister extends Controllers {
             {
                
                 $receivedDate =  strtotime($_POST['datum']);
-                // $date = date('Y-m-d', $receivedDate);
-                // echo "Received Month: ".date('m', $receivedDate);
-
+                
+               
                 $data = $this->model->getTrans($columns, $receivedDate, $this->page);
                
-                // $month = $_POST['datum'] == null ? date('m', strtotime($date)) : date('m', strtotime($_POST['datum']));
-
-                // $year = $_POST['datum'] == null ? date('Y', strtotime($date)) : date('Y', strtotime($_POST['datum']));
                 $allTrans = $this->model->getAllTrans("SUM(Credit) - SUM(Debit)");
                 $sum = ($allTrans[0]["SUM(Credit) - SUM(Debit)"]);
                 // $sum = $allTrans['Credit'] - $allTrans['Credit'];
                 // echo $sum;
-
+                $nav = $data['navigation'];
+                $data = $data['results'];
+               
                 if(is_array($data))
                 {
                     foreach($data as $item)
                     {
+                        //ODSTRAN NULY Z CREDITU A DEBITU
+                        $cred = ($item["Credit"]==0) ? "" : $item["Credit"];
+                        $deb = ($item["Debit"]==0) ? "" : $item["Debit"];
+                        //VYTVOR TABLE TRANSAKCI
                         $result .= '<tr>';
                         $result .= '<td>'.$item["TransId"].'<input type="hidden" value="'.$item["TransId"].'"</td>';
                         $result .= '<td>'.$item["Date"].'</td>';
                         $result .= '<td>'.$item["IdUser"].'</td>';
-                        $result .= '<td>'.$item["Credit"].'</td>';
-                        $result .= '<td>'.$item["Debit"].'</td>';
+                        $result .= '<td class="credit">'.$cred.'</td>';
+                        $result .= '<td class="debit">'.$deb.'</td>';
                         $result .= "<td><button class='table_btn delete' id='#delete_user_open_slide' onclick='slideDown(".$item['TransId'].", 2);'>Delete</button></td>";
                         $result .= '</tr>';
                         $credit += $item["Credit"];
@@ -63,16 +65,19 @@ class CashRegister extends Controllers {
                        
                     }
                     $diff = $credit - $debit;
-                    $result .= "<tr><td></td><td></td><td>rozdíl<span class='diff'> $diff</span></td><td class='credit'>$credit</td><td class='debit'>$debit</td></tr>";
+                    $result .= "<tr><td></td><td></td><td>Zbytek<span class='diff'> $diff</span></td><td class='credit'>$credit</td><td class='debit'>$debit</td><td></td></tr>";
                     //echo $result;
                 }
+
                 $output = array(
                     "table" => $result,
-                    "sum" => $sum
+                    "sum" => $sum,
+                    "nav" => $nav
 
                 );
+                
                 echo json_encode($output);
-                 
+                
                 
             }
         }
