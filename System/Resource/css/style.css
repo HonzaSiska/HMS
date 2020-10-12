@@ -400,6 +400,12 @@ tbody tr:last-child td:first-child{
 tbody tr:last-child td:last-child{
     border-bottom-right-radius:4px;
 }
+tbody tr:last-child{
+    border-top: 2px dashed lightgray;
+}
+tbody tr:last-child td{
+    text-decoration: underline;
+}
 
 .credit{
     color: green;
