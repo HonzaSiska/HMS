@@ -369,7 +369,7 @@ th{
 td{
     /* border-bottom:1px solid white; */
     /* background-color: rgb(233, 233, 233); */
-    border-bottom: 1px solid rgba(117,76,240,0.2);
+    /*border-bottom: 1px solid rgba(117,76,240,0.2);*/
     color: rgba(117,76,240,1);
     font-weight: lighter;
     color: gray;
@@ -402,9 +402,14 @@ tbody tr:last-child td:last-child{
 }
 tbody tr:last-child{
     border-top: 2px dashed lightgray;
+
+}
+tbody tr:nth-child(even){
+    background: rgb(250, 247, 247);
 }
 tbody tr:last-child td{
     text-decoration: underline;
+    padding: 10px 0;
 }
 
 .credit{
@@ -461,6 +466,7 @@ tbody tr:last-child td{
 }
 .btn_disabled{
     background: white;
+    color: white;
 }
 
 

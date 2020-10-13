@@ -32,7 +32,7 @@ class CashRegister {
             (response) => {
                 console.log(response);
                 let data = JSON.parse(response);
-                console.log(data);
+                console.log(response);
                 let pokladna = document.getElementById("pokladna_total");
                 let output = document.getElementById("table_trans_body");
                 pokladna.innerHTML = data.sum;

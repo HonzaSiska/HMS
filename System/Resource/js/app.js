@@ -49,6 +49,7 @@ var cashRegister = () => {
 let insertTrans = (func) => {
   
   cashReg.insertTrans(func);
+  
 
   //closeAside("#aside")
 };

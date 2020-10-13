@@ -17,7 +17,7 @@ class Users_model extends Connect{
         if(is_array($response)){
             
             return $response = $response['results'];
-            var_dump($response);
+            //var_dump($response);
         }else{
             return $response;
         }

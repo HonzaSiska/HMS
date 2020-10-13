@@ -58,6 +58,20 @@ class CashRegister_model extends Connect
         
         
     }
+    function getUsers($columns, $id)
+    {   
+        $where =" WHERE IdUser = :IdUser";
+        $param = array(
+            "IdUser"=> $id
+        );
+        $response = $this->db->select1($columns, "users", $where, $param);
+        if(is_array($response))
+        {
+            return $response = $response['results'];
+        }else{
+            return $response;
+        }
+    }
 
 
 

@@ -24,7 +24,7 @@ class CashRegister extends Controllers {
         {
             $user = Session::getSession("User");
             $result = "";
-            $count = 0;
+            
             $credit = 0;
             $debit = 0;
             $columns ="*";
@@ -33,35 +33,40 @@ class CashRegister extends Controllers {
             {
                
                 $receivedDate =  strtotime($_POST['datum']);
-                
-               
                 $data = $this->model->getTrans($columns, $receivedDate, $this->page);
-               
+                // $users =$this->model->getUsers("*");
+                
                 $allTrans = $this->model->getAllTrans("SUM(Credit) - SUM(Debit)");
                 $sum = ($allTrans[0]["SUM(Credit) - SUM(Debit)"]);
                 // $sum = $allTrans['Credit'] - $allTrans['Credit'];
                 // echo $sum;
                 $nav = $data['navigation'];
                 $data = $data['results'];
-               
+                
                 if(is_array($data))
                 {
+                    $count = 0;
                     foreach($data as $item)
-                    {
+                    {   
+                        //Vytahni uzivatele podle id ulezene v tablu transakci
+                        $users =$this->model->getUsers("Name, Last_name",$item['IdUser']);
+
                         //ODSTRAN NULY Z CREDITU A DEBITU
                         $cred = ($item["Credit"]==0) ? "" : $item["Credit"];
                         $deb = ($item["Debit"]==0) ? "" : $item["Debit"];
+
                         //VYTVOR TABLE TRANSAKCI
                         $result .= '<tr>';
                         $result .= '<td>'.$item["TransId"].'<input type="hidden" value="'.$item["TransId"].'"</td>';
                         $result .= '<td>'.$item["Date"].'</td>';
-                        $result .= '<td>'.$item["IdUser"].'</td>';
+                        $result .= '<td>'.$users[0]["Name"].' '.$users[0]["Last_name"].'</td>';
                         $result .= '<td class="credit">'.$cred.'</td>';
                         $result .= '<td class="debit">'.$deb.'</td>';
                         $result .= "<td><button class='table_btn delete' id='#delete_user_open_slide' onclick='slideDown(".$item['TransId'].", 2);'>Delete</button></td>";
                         $result .= '</tr>';
                         $credit += $item["Credit"];
                         $debit += $item["Debit"];
+                        $count++;
                        
                     }
                     $diff = $credit - $debit;
