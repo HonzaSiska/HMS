@@ -24,16 +24,17 @@ class Anonymous
             var $Amount;
             var $UserValue;
             var $Type;
+            var $Description;
             function __construct($array)
             {
                 $this->Date = $array[0];
                 $this->Amount = $array[1];
                 $this->UserValue = $array[2];
                 $this->Type = $array[3];
+                $this->Description = $array[4];
             }
         };
     }
 }
 
-//$_POST['name'],$_POST['lastName'],$_POST['email'],$_POST['password'],$_POST['role']
 ?>

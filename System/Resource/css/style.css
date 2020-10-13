@@ -29,7 +29,7 @@ h1,h2,h6{
     
 }  
 h1{
-    margin: 20px;
+    margin: 15px;
     font-weight: 400;
     background-color:transparent;
     color: black;
@@ -45,13 +45,15 @@ h2{
     font-weight:600;
 }
 h3{
-    color: grey;
+    color: rgb(117,76,240,1);
     font-size: 15px;
     padding-top: 5px;
 }
 hr{
-    opacity: 0.1;
-    color: #754cf0;
+    opacity: 0.3;
+    border-style:none;
+    color: rgba(117,76,240);
+    height: 0.5px;
 
     margin-top: 5px;
 }
@@ -379,9 +381,9 @@ td{
     margin: 0 5px;
     padding: 10px 5px;
     border-radius: 5px;
-    border: 1px solid rgba(117,76,240,1);
-    color: black;
-    background-color: rgb(9, 139, 9);
+    border: 1px solid rgb(9, 139, 9, 1);
+    color: rgb(9, 139, 9, 1);
+    background-color: rgb(9, 139, 9, 0.1);
     /* background-color: rgba(117,76,240,0.1); */
     /* -webkit-box-shadow: 4px 4px 4px -3px rgba(102, 101, 101,1);
     -moz-box-shadow: 4px 4px 4px -3px rgb(102, 101, 101,1);
@@ -389,10 +391,10 @@ td{
     /* font-weight: 700; */
 }
 .delete {
-    background-color:rgb(185, 45, 45);
-    color: black;
+    background-color:rgb(185, 45, 45, 0.1);
+    color: red;
     /* border:1px solid rgb(7, 7, 7); */
-    border: none;
+    border: 1px solid red;;
 }
 tbody tr:last-child td:first-child{
     border-bottom-left-radius:4px;
@@ -405,7 +407,7 @@ tbody tr:last-child{
 
 }
 tbody tr:nth-child(even){
-    background: rgb(250, 247, 247);
+    background: rgba(117,76,240,0.1);
 }
 tbody tr:last-child td{
     text-decoration: underline;
@@ -454,15 +456,15 @@ tbody tr:last-child td{
     display:flex;
     flex-direction: row;
     justify-content: center;   
-    margin: 10px 0  0;     
+    margin: 15px 0 5px 0;     
 }
 .paginator div{
     margin: 0 20px;
 }
 .btn_disabled, .btn_enabled{
     padding: 5px; 
-    background-color: rgb(240, 239, 239);  
-    border:1px solid lightgrey;                      
+    background-color: rgb(117,76,240,0.1);  
+    border:1px solid rgba(117,76,240,0.3);                     
 }
 .btn_disabled{
     background: white;

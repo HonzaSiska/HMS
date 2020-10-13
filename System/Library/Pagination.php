@@ -41,14 +41,14 @@ class Pagination extends Connect
         
         if($month == $todayMonth && $year == $todayYear)
         {
-            $navigation = "<hr><div class='paginator'><div><button onclick='getTrans(\"".$prevYear.",".$prevMonth.",1\");' class='prev btn_enabled'>&laquo; ".$prevMonth."-".$prevYear."</button></div>";
+            $navigation = "<div class='paginator'><div><button onclick='getTrans(\"".$prevYear.",".$prevMonth.",1\");' class='prev btn_enabled'>&laquo; ".$prevMonth."-".$prevYear."</button></div>";
 
             $navigation .="<div><h3>".Functions::months()[$month-1]. "-" . $year."</h3></div>" ;
             // $navigation .="<div></div><button class='next btn_disabled' >         </button>&nbsp;&nbsp;&nbsp;</div>";
             $navigation .= "<div><button  class='next btn_disabled'>".$nextMonth."-".$nextYear." &raquo;</button></div></div>";
         }else
         {
-            $navigation = "<hr><div class='paginator'><div><button onclick='getTrans(\"".$prevYear.",".$prevMonth.",1\");' class='prev btn_enabled'>&laquo; ".$prevMonth."-".$prevYear."</button></div>";
+            $navigation = "<div class='paginator'><div><button onclick='getTrans(\"".$prevYear.",".$prevMonth.",1\");' class='prev btn_enabled'>&laquo; ".$prevMonth."-".$prevYear."</button></div>";
             
             $navigation .="<div><h3>".Functions::months()[$month-1]. "-" . $year."</h3></div>" ;
 

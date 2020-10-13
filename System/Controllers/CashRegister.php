@@ -60,6 +60,7 @@ class CashRegister extends Controllers {
                         $result .= '<td>'.$item["TransId"].'<input type="hidden" value="'.$item["TransId"].'"</td>';
                         $result .= '<td>'.$item["Date"].'</td>';
                         $result .= '<td>'.$users[0]["Name"].' '.$users[0]["Last_name"].'</td>';
+                        $result .="<td>".$item['Description']."</td>";
                         $result .= '<td class="credit">'.$cred.'</td>';
                         $result .= '<td class="debit">'.$deb.'</td>';
                         $result .= "<td><button class='table_btn delete' id='#delete_user_open_slide' onclick='slideDown(".$item['TransId'].", 2);'>Delete</button></td>";
@@ -70,7 +71,7 @@ class CashRegister extends Controllers {
                        
                     }
                     $diff = $credit - $debit;
-                    $result .= "<tr><td></td><td></td><td>Zbytek<span class='diff'> $diff</span></td><td class='credit'>$credit</td><td class='debit'>$debit</td><td></td></tr>";
+                    $result .= "<tr><td></td><td></td><td></td><td>Zbytek<span class='diff'> $diff</span></td><td class='credit'>$credit</td><td class='debit'>$debit</td><td></td></tr>";
                     //echo $result;
                 }
 
@@ -92,9 +93,9 @@ class CashRegister extends Controllers {
         if(null != $user){
             if(Session::getSession('User')['Role'] == "admin")
             {
-                if(($_POST['date'] || $_POST['amount'] || $_POST['userValue']  || $_POST['type']) != null )
+                if(($_POST['date'] || $_POST['amount'] || $_POST['userValue']  || $_POST['type'] || $_POST['desc']) != null )
                 {   
-                   $array = array($_POST['date'] , $_POST['amount'],$_POST['userValue'], $_POST['type']);
+                   $array = array($_POST['date'] , $_POST['amount'],$_POST['userValue'], $_POST['type'],$_POST['desc']);
 
                     
                     $data = $this->model->insertTrans($this->insertTransClass($array));

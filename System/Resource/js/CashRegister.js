@@ -51,6 +51,7 @@ class CashRegister {
         let date = document.querySelector("#datum").value;
         let amount = document.querySelector("#castka").value;
         let userValue = document.querySelector("#selectNames").value;
+        let desc = document.querySelector("#popis").value;
        
         // alert(date);
         if(date != ""){
@@ -62,25 +63,34 @@ class CashRegister {
                     {
                         if(userValue != 0)
                         {
-                            $.post(
-                                URL + "CashRegister/insertTrans",
-                                {
-                                    date: date,
-                                    amount: amount,
-                                    userValue: userValue,
-                                    type : func
-                                },
-                                (response)=>
-                                {   
-                                    if(response == 0)
+                            if(desc != "")
+                            {
+                                $.post(
+                                    URL + "CashRegister/insertTrans",
                                     {
-                                        closeAside("#aside");
-                                        this.getTrans(null);
-                                    }else{
-                                        error.innerHTML = "Transakce nemohla byt provedena !!";
-                                    }
-                                    
-                                })
+                                        date: date,
+                                        amount: amount,
+                                        userValue: userValue,
+                                        desc: desc,
+                                        type : func
+                                    },
+                                    (response)=>
+                                    {   
+                                        if(response == 0)
+                                        {
+                                            closeAside("#aside");
+                                            this.getTrans(null);
+                                        }else{
+                                            error.innerHTML = "Transakce nemohla byt provedena !!";
+                                            console.log(response);
+                                        }
+                                        
+                                    })
+                            }else
+                            {
+                                error.innerHTML="Zadej popis !!"; 
+                            }
+                            
                         }else
                         {
                             error.innerHTML="Vyber uživatele !!"; 

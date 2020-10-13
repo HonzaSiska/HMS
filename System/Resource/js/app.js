@@ -176,6 +176,7 @@ var openAside = (trigger) => {
       data += "<hr><br><label for='datum' class='login_label' >Datum</label><input type='date' id='datum' class='ui-widget-conten' placeholder='Datum'>"
       data +="<label for='castka' class='login_label' >Částka</label><input type='text' id='castka' ></div>";
       data += "<td><label  class='login_label' >Uživatel</label><select id='selectNames'></select></td>"; 
+      data +="<td><label  for='popis' class='login_label' >Popis</label><input type='text' id='popis'></td>"
       data += "<label id='transError'></label>";
       data += "<button type='submit' onclick='insertTrans(\"deposit\");' id='vklad'  class='table_btn edit aside_button'>Vklad</button>"
       data +="<button  type='submit' onclick='insertTrans(\"debit\");' class='table_btn delete aside_button'>Výdaj</button>";
