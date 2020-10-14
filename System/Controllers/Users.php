@@ -202,7 +202,13 @@ class Users extends Controllers {
         // echo $_POST['email'];
         if(null != $user){
             if("admin" == $user['Role']){
-                echo $this->model->deleteUser($_POST['idUser'], $_POST['email']);
+                $response = $this->model->deleteUser($_POST['idUser'], $_POST['email']);
+                if($response == 0)
+                {
+                    return 0;
+                }else{
+                    return $response;
+                }
             }else{
                 echo "Nemáš přístup !!";
             }

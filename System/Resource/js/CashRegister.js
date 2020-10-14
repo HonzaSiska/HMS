@@ -8,7 +8,7 @@ class CashRegister {
         //datum = "2020,10,11";
         // datum = toString(datum);
         // datum = datum.getFullYear() + "-" + parseInt(datum.getMonth()+1) + "- 1";
-        alert(datum);
+        // alert(datum);
         if(datum == null || datum == "")
         {
             datum = new Date();
@@ -82,7 +82,7 @@ class CashRegister {
                                             this.getTrans(null);
                                         }else{
                                             error.innerHTML = "Transakce nemohla byt provedena !!";
-                                            console.log(response);
+                                            // console.log(response);
                                         }
                                         
                                     })
@@ -116,12 +116,24 @@ class CashRegister {
 
     }
     deleteTrans(data){
-        alert("WORKS"+data);
+        //alert("data to be delete:"+data)
+        $.post(
+            URL + "CashRegister/deleteTrans",
+            {
+                IdTrans: data
+            },
+            (response) => {
+                if(response == 0)
+                {
+                    this.getTrans(null);
+                    slideUp();
+                }else{
+                    alert(response);
+                    
+                }
+            }
+        )
     }
     
         
 }
-// $.post(
-//     "CashRegister/insertTrans",
-//     $('.transaction_form').serialize(),
-//     (response)=>{})

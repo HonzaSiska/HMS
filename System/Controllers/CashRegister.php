@@ -88,7 +88,8 @@ class CashRegister extends Controllers {
             }
         }
     }
-    public function insertTrans(){
+    public function insertTrans()
+    {
         $user = Session::getSession("User");
         if(null != $user){
             if(Session::getSession('User')['Role'] == "admin")
@@ -117,8 +118,28 @@ class CashRegister extends Controllers {
              
         }else{
              header("Location:".URL."CashRegister/cashRegister");
-       }
+        }
+
+        
     }
+    public function deleteTrans()
+    {
+        if(isset($_POST['IdTrans']))
+        {
+            $response = $this->model->deleteTrans($_POST['IdTrans']);
+            if($response == 0)
+            {
+                return 0;
+            }else{
+                return $response;
+            }
+            
+        }else{
+            echo "Transakce nemohla být smazána !!";
+        }
+        
+    }
+   
 
 
 }

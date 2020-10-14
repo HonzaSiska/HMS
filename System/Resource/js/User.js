@@ -226,7 +226,7 @@ class User {
             
 
         }else{
-            console.log(JSON.parse(localStorage.getItem("user"))['IdUser'], "---",data['IdUser']);
+            //console.log(JSON.parse(localStorage.getItem("user"))['IdUser'], "---",data['IdUser']);
             $.post(
                 URL + "Users/deleteUser",
                 {

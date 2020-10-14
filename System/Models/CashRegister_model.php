@@ -73,6 +73,22 @@ class CashRegister_model extends Connect
         }
     }
 
+    public function deleteTrans($id)
+    {
+        $where = " WHERE TransId =:TransId";
+        $param = array(
+            "TransId" => $id
+        );
+        $data = $this->db->delete("transactions",$where, $param);
+        if(is_bool($data))
+        {
+            return 0;
+        }else{
+            return $data;
+        }
+
+    }
+
 
 
 
