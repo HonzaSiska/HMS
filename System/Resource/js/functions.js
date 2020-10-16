@@ -17,3 +17,32 @@ var getParameterByName = (name) =>{
     // La función decodeURIComponent() decodifica un componente URI.
     return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+
+const monthsEnglish = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "Julio",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+];
+const  monthsCzech = [
+    "Leden",
+    "Únor",
+    "Březen",
+    "Duben",
+    "Květen",
+    "Červen",
+    "Červenec",
+    "Srpen",
+    "Září",
+    "Říjen",
+    "Listopad",
+    "Prosinec",
+]

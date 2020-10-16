@@ -10,13 +10,15 @@ class Pagination extends Connect
     public function paginationByMonth($columns, $table, $date, $where, $param)
     {   
        
-    
+       
+
         $month = date("m", $date);
         //$monthName = date("F",$date);
         $year = date("Y", $date);
         $todayMonth = date("m");
         $todayYear = date("Y");
         //$prev = date("Y-m", strtotime("-1 months"),$date);
+        
         if($month == 1)
         {
             $prevMonth = 12;
@@ -37,6 +39,13 @@ class Pagination extends Connect
             $nextMonth = $month + 1;
 
         }
+        $newParam = array(
+            "Month" => $prevMonth,
+            "Year" => $prevYear
+        );
+        // $lastTrans = $this->db->select1($columns, $table," WHERE MONTH(Date) = :Month AND YEAR(DATE) =:Year ORDER BY DATE DESC LIMIT 1", $newParam);
+        // $lastTrans = $lastTrans['results'];
+        
         
         
         if($month == $todayMonth && $year == $todayYear)

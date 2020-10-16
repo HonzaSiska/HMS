@@ -3,6 +3,7 @@ var user = new User();
 var uploadpicture = new Uploadpicture();
 //var passUserData = null;
 var cashReg = new CashRegister();
+var graphs = new Graphs();
 
 
 var loginUser = () => {
@@ -13,7 +14,7 @@ var getRoles = () => {
   user.getRoles();
 };
 
-// -----------------------------------------------------------------------------------------------------------
+
 
 var addUser = () =>{
   openObject('#pop_up');
@@ -23,46 +24,32 @@ var addUser = () =>{
   // document.getElementById('register_password').disabled = false;
   getRoles();
 }
-// -----------------------------------------------------------------------------------------------------------
+
 
 
 var getUsers = () =>{
   window.location.href = URL + "Users/users";
- 
-
-  
 };
 
 
 var cashRegister = () => {
   window.location.href = URL + "CashRegister/cashRegister";
-  // cashReg.getTrans();
-  
 }
-// var deleteUser = (passUserData) => {
-//     console.log(passUserData);
-//     user.deleteUser(passUserData);
-//     // passUserData = null;
 
-// };
 
 let insertTrans = (func) => {
-  
   cashReg.insertTrans(func);
-  
-
-  //closeAside("#aside")
 };
-// var deleteTrans = (data) => {
-//   alert(data);
-//   cashReg.deleteTrans(data);
-// }
+
 
 let getTrans = (data) => {
   cashReg.getTrans(data);
 }
  
-
+let getGraphs = () => {
+  window.location.href = URL + "Graphs/graphs";
+  
+}
 
 
 var goMenu = () => {
@@ -235,6 +222,13 @@ $().ready(()=>{
     let output = document.getElementById("pokladna_total");
   (output.value > 0) ?  output.style.color="green" : output.style.color="green" ;
   }
+
+  // Po nacteni stranky Graphu
+  if(URLactual == PATHNAME + "Graphs/graphs")
+  {
+    graphs.getChart1();
+  }
+  
 
   $("#register_button").click((e)=> {
     e.preventDefault();

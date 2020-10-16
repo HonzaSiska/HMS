@@ -1,6 +1,7 @@
 <?php
 
-class Users extends Controllers {
+class Users extends Controllers 
+{
     function __construct(){
         parent::__construct();
         
