@@ -1,0 +1,75 @@
+<div class="container_principal">
+
+
+
+    <div class="pop_up_apartment" id="pop_up_apartment">
+        <!-- Pridat apartment -->
+        <div class="form_wrapper">
+
+            <form  method="POST" class="add_apartment" enctype="multipart/form-data" onsubmit="return false;">
+                <div class="input_field_wrapper">
+                    <label for="apartment_name" class="login_label" >* Jednotka</label>
+                    <!-- <br> -->
+                    <input id="apartment_name" type="text" name="apartment_name" >
+                </div>
+
+                <div class="input_field_wrapper">
+                    <label for="apartment_ulice" class="login_label" >* Ulice</label>
+                    <!-- <br> -->
+                    <input id="apartment_ulice" type="text" name="apartment_ulice" >
+                </div>
+
+                <div class="input_field_wrapper">
+                    <label for="apartment_city" class="login_label" >* Město</label>
+                    <!-- <br> -->
+                    <input id="apartment_city" type="text" name="rapartment_city" >
+                </div>
+
+                <div class="input_field_wrapper">
+                    <label for="apartment_rooms" class="login_label">* Počet pokojů</label>
+                    <!-- <br> -->
+                    <input id="apartment_rooms" type="text" name="apartment_rooms" ></input>
+                </div>
+                <div class="input_field_wrapper">
+                    <label for="apartment_desc" class="login_label">Popis</label>
+                    <!-- <br> -->
+                    <textarea id="apartment_desc" name="apartment_desc"></textarea>
+                </div>
+
+                <div class="input_field_wrapper">
+                    <label for="apartment_user" class="login_label" >Uživatel</label>
+                    <select id='apartment_user' class="apartment_user">
+
+                    </select>
+                </div>
+                <!-- Upload pictures -->
+                
+                    
+
+                <label for="files" class="">Fotky</label>
+                <output id="fotos"></output>    
+                <a>
+                    <div class="file-field input-field">
+                        <div class="">
+                            
+                            <input class="" accept="image/*" type="file" id="files" name="files" multiple>
+                            <div class="file-path-wrapper">
+                                <!-- <input class="file-path " type="text"> -->
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <label for="" class="error message" id="apartment_form_error"></label>
+                
+
+                <button onclick="insertApartment();" id="add_apartment_button" class="btn" >Uložit</button>
+                
+                
+            </form>
+            
+            
+        </div>
+
+    </div>
+    
+</div>

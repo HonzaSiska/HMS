@@ -4,6 +4,8 @@ var uploadpicture = new Uploadpicture();
 //var passUserData = null;
 var cashReg = new CashRegister();
 var graphs = new Graphs();
+var apartment = new Apartments();
+
 
 
 var loginUser = () => {
@@ -50,11 +52,23 @@ let getGraphs = () => {
   window.location.href = URL + "Graphs/graphs";
   
 }
+let apartments = () => {
+  window.location.href = URL + "Apartments/apartments";
+  // apartment.apartments();
+};
 
 
 var goMenu = () => {
   window.location.href = URL + "Principal/principal";
 };
+var archivo = (evt) => {
+  apartment.archivo(evt, "fotos");
+}
+var insertApartment = () =>{
+  apartment.insertApartment();
+}
+// document.getElementById('files').addEventListener('change', uploadpicture.archivo("fotos"), false);
+
 
 //SLIDE DOWN POPUP
 var slideDown = (data, switchData) => {
@@ -213,9 +227,10 @@ $().ready(()=>{
 
   if(URLactual == PATHNAME + "Users/users")
   {
-  
   user.getUsers();
   }
+
+
   if(URLactual == PATHNAME+"CashRegister/cashRegister")
   {
     cashReg.getTrans(null);
@@ -223,12 +238,20 @@ $().ready(()=>{
   (output.value > 0) ?  output.style.color="green" : output.style.color="green" ;
   }
 
+
   // Po nacteni stranky Graphu
   if(URLactual == PATHNAME + "Graphs/graphs")
   {
     graphs.getChart1();
+    graphs.getChart2();
   }
   
+
+  if(URLactual == PATHNAME + "Apartments/apartments")
+  {
+    document.getElementById('files').addEventListener('change', archivo, false);
+  }
+
 
   $("#register_button").click((e)=> {
     e.preventDefault();
@@ -236,6 +259,13 @@ $().ready(()=>{
     user.registerUser();
  
   });
+  //Update charts
+  $("#updateChart").click((e)=> {
+    graphs.getChart1();
+    graphs.getChart2();
+ 
+  });
+ 
  
 
   

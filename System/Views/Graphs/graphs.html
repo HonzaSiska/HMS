@@ -1,28 +1,38 @@
 <div class="container_principal">
+    <div class="chartYear">
+        <div>
+            <label for="chartYearInput">Rok</label>
+            <input type="text" id="chartYearInput" >
+        </div>
+        <div>
+            <button id="updateChart" class="btn"  >Aktualizovat</button>
+        </div>
+        <hr>
+    </div>
     <div id="chartGrid">
         <div class="chart_section">
             <h2>Útrata měsíčně</h2>
-            <div class="chartYear">
+            <!-- <div class="chartYear">
                 <div>
                     <label for="chartYearInput">Rok</label>
                     <input type="text" id="chartYearInput" >
                 </div>
                 <div>
-                    <button class="btn"  onclick="graphs.getChart1();">Aktualizovat</button>
+                    <button id="updateChart" class="btn"  >Aktualizovat</button>
                 </div>
                 
                 
                 
-            </div>
+            </div> -->
             <canvas id="chart1">
 
             </canvas>
-            <div id="test"></div>
+            
             
         </div>
         <div class="chart_section">
             <h2>Útrata ročně</h2>
-            <div class="chartYear">
+            <!-- <div class="chartYear">
                 <div>
                     <label for="chartYearInput">Rok</label>
                     <input type="text" id="chartYearInput" >
@@ -33,11 +43,11 @@
                 
                 
                 
-            </div>
+            </div> -->
             <canvas id="chart2">
 
             </canvas>
-            <div id="test"></div>
+            
             
         </div>
     </div>

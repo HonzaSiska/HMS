@@ -6,6 +6,7 @@
             parent::__construct();
         }
 
+        
         public function getChart1($columns, $year)
         {
             $where = " WHERE YEAR(DATE) = :Year GROUP BY MONTH(Date)";
@@ -17,6 +18,24 @@
             
                 return $response = $response['results']; 
                 // return var_dump($response);
+            }else{
+                return $response;
+            }
+
+        }
+        public function getChart2($columns, $year)
+        {
+            $where = " WHERE YEAR(DATE) <= :Year  GROUP BY YEAR(Date)";
+            $param = array(
+                "Year" => $year
+            );
+            $response = $this->db->select1($columns, "transactions",$where, $param);
+            
+            if(is_array($response)){
+            
+                return $response = $response['results']; 
+                //var_dump($response);
+                
             }else{
                 return $response;
             }

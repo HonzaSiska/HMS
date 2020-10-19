@@ -152,7 +152,7 @@ aside{
     
 }
 
-input, select{
+input[type=text], input[type=password],select, textarea{
     border: 0.5px solid#754cf0;
     border-radius: 5px;
     background: transparent;
@@ -165,8 +165,27 @@ input, select{
     -moz-box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
     box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
     color: #7763aa;
-    font-size: 10px;
+    font-size: 12px;
 }
+input[type=file]::-webkit-file-upload-button {
+    
+    padding: .2em .4em;
+    border-radius: .2em;
+    border: 1px solid rgb(9, 139, 9, 1);
+    color: white;
+    background-color: rgb(9, 139, 9, 1);
+    transition: 1s;
+  }
+  
+  input[type=file]::file-selector-button {
+    
+    padding: .2em .4em;
+    border-radius: .2em;
+    border: 1px solid rgb(9, 139, 9, 1);
+    color: white;
+    background-color: rgb(9, 139, 9, 1);
+    transition: 1s;
+  }
 input:focus{
 
     background: #252423;
@@ -202,7 +221,7 @@ label{
 
 footer{
     background-color: #754cf0;
-    /* position: fixed; */
+    position: fixed;
     bottom: 0;
     width: 100%;
     padding: 20px;
@@ -447,9 +466,9 @@ tbody tr:last-child td{
 #pop_up_section1, #pop_up_section2, #pop_up_section3, #pop_up_section4, #pop_up_section5{
     display:none;
 }
-/* ---------------- */
-/* Cash Register */
-/* ---------------- */
+
+/*********** Cash Register ********************/
+
 .paginator{
     display:flex;
     flex-direction: row;
@@ -468,9 +487,7 @@ tbody tr:last-child td{
     background: white;
     color: white;
 }
-/* -------------------------------------
-GRAPHS
-------------------------------------- */
+/* ********GRAPHS *****************/
 #chartGrid{
     display:grid;
     grid-template-columns: 1fr;
@@ -482,19 +499,36 @@ GRAPHS
     align-items: center;
     
 }
-
-
 .chartYear div{
     
     margin: center;
     
 }
+.chartYear{
+    width: 60%;
+    margin:  0 auto 30px;
+}
 .chartYear input{
     text-align: center;
     font-weight: bold;
-    
-
 }
+/* ******** APPARTMENTS *****************/
+
+#fotos{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    
+}
+.grid-item{
+        width:100%;
+        align-self: center;
+        background:red;
+}
+.grid-item img{
+    width:100%;
+}
+
 
 
 
@@ -565,9 +599,15 @@ GRAPHS
         /* display: inline-block; */
     
     }
-    /* #chart1{
-        width: 300px;
-    } */
+    /* ============ 
+        Chart 
+     ============ */
+
+
+    .chartYear{
+        width: 30%;
+        margin:  0 auto 30px;
+    }
     .chart_section{
         width: 80%;
     }

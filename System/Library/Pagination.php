@@ -31,6 +31,12 @@ class Pagination extends Connect
             $prevYear = $year;
             $nextMonth = $month + 1;
             $nextYear = $year;
+        }else if($month == 12)
+        {
+            $prevMonth = $month -1;
+            $prevYear = $year;
+            $nextYear = $year +1;
+            $nextMonth =  1;
         }else
         {
             $prevMonth = $month -1;

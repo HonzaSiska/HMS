@@ -46,6 +46,17 @@ class QueryManager
         }
         $pdo = null;
     }
+    function insert2($table, $param, $value){
+        try {
+            $query = "INSERT INTO ".$table.$value;
+            $sth = $this->pdo->prepare($query);
+            $sth->execute((array)$param);
+            return array("Id"=>$this->pdo->lastInsertId());
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+        $pdo = null;
+    }
 
     function update($table,$param,$value,$where){
         try {
