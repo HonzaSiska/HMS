@@ -5,6 +5,7 @@
             
             $this->view = new Views();
             $this->page = new Pagination();
+            $this->image = new Uploadimage();
             $this->loadClassmodels();
             
             

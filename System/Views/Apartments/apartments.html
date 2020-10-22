@@ -6,7 +6,7 @@
         <!-- Pridat apartment -->
         <div class="form_wrapper">
 
-            <form  method="POST" class="add_apartment" enctype="multipart/form-data" onsubmit="return false;">
+            <form  id="apartment_form" method="POST" class="add_apartment" enctype="multipart/form-data" onsubmit="return false;">
                 <div class="input_field_wrapper">
                     <label for="apartment_name" class="login_label" >* Jednotka</label>
                     <!-- <br> -->
@@ -52,10 +52,10 @@
                     <div class="file-field input-field">
                         <div class="">
                             
-                            <input class="" accept="image/*" type="file" id="files" name="files" multiple>
-                            <div class="file-path-wrapper">
-                                <!-- <input class="file-path " type="text"> -->
-                            </div>
+                            <input class="" accept="image/*" type="file" id="files" name="files[]" multiple>
+                            <!-- <div class="file-path-wrapper">
+                                <input class="file-path " type="text">
+                            </div> -->
                         </div>
                     </div>
                 </a>
