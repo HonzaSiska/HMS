@@ -54,6 +54,10 @@ class Apartments extends Uploadpicture{
                 type: 'post',
                 success: (response)=> {
                     console.log(response);
+                    if(response == 0){
+                        document.getElementById("apartment_form").reset();
+                        document.getElementById("fotos").innerHTML = null;
+                    }
                 }
             })
             // $.post(

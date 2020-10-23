@@ -184,7 +184,7 @@ var openAside = (trigger) => {
       data +="</div>";
       data += "</form>";
       object.innerHTML=data;
-      user.selectUser();
+      user.selectUser("selectNames");
       break;
   
     default:
@@ -250,6 +250,7 @@ $().ready(()=>{
   if(URLactual == PATHNAME + "Apartments/apartments")
   {
     document.getElementById('files').addEventListener('change', archivo, false);
+    user.selectUser("apartment_user");
   }
 
 
@@ -265,6 +266,7 @@ $().ready(()=>{
     graphs.getChart2();
  
   });
+
  
  
 

@@ -23,15 +23,22 @@ class Apartments extends Controllers {
             {   
 
                 //ZDE PRIJDE QUERY NA VYTVORENI NOVEHO BYTTU A POTOM SE ULOZI FOTKY
-                //this works
-                //echo  $_FILES['files']['name'][0];
-                //echo $_POST['Jednotka']; 
-                
-                
-                if(isset($_FILES['files']))
+               
+                if(isset($_POST['Jednotka']))
+                {
+                    $array = array(
+                        $_POST['Jednotka'],
+                        $_POST['Ulice'],
+                        $_POST['Mesto'],
+                        $_POST['Pokoje'],
+                        $_POST['Popis'],
+                    );
+                    $pics = array();
+
+                    if(isset($_FILES['files']))
                     {
                          $countFiles = count($_FILES['files']['name']);
-                         $imageArray = array();
+                         
                          for ($i = 0; $i < $countFiles; $i++)
                          {
                             // echo $_FILES['files']['tmp_name'][$i];
@@ -44,19 +51,23 @@ class Apartments extends Controllers {
                             if($succes != true){
                                 echo "Fotka $newFile nemaohla být uložena !!";
                             }else{
-                                array_push($imageArray, $newFile);
+                                array_push($pics, $newFile);
                             }
-                            
-                           
-                            
-                            
-                            
                          }
-                        
-                       
-                        //var_dump($_FILES['files']);
-                        // print_r ($_FILES['files']['error'] );
-                    }
+                      
+                    }else{
+                        //pokud nejsou zadne fotky v poli posli null
+                        $pics = $pics != null ? $pics : null;
+                        //var_dump($pics);
+                        $data = $this->model->insertApartment($this->insertApt($array),$pics);
+                        echo $data;
+                    }  
+                }else
+                {
+                    echo 1;
+                }
+                
+             
                     
                     
                     // $filename = $_FILES['files']['name'][$index];
@@ -69,48 +80,7 @@ class Apartments extends Controllers {
                     // }
              
                 
-           
-               
-                //     if(count($receivedData) != 0)
-                //     {
-                //         $array = [
-                //             $receivedData[1]['Jednotka'],
-                //             $receivedData[2]['Ulice'],
-                //             $receivedData[3]['Mesto'],
-                //             $receivedData[4]['Pokoje'],
-                //             $receivedData[5]['Popis']
-                //         ];
-                //         if(null!= ($receivedData[0]['File']))
-                //             {
-                //                 $pics = $receivedData[0]['File'];
-                //             }else
-                //             {
-                //                 $pics = null;
-                //             }
-                //             var_dump($pics[0]);
-
-                //         $data = $this->model->insertApartment($this->insertApt($array),$pics);
-                //         if(is_bool($data))
-                //         {
-                //             var_dump($data);
-                //             echo 0;
-                            
-
-                //         }else{
-                //             echo 1;
-                //         }
-
-                //     }else
-                //     {
-                //         echo 1;
-                //     }
-
-                    
-                // };
             }
         }
     }
 }
-
-
-?>

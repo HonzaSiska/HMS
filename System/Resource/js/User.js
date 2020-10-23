@@ -172,7 +172,7 @@ class User {
             }
         )
     }   
-    selectUser = () =>{
+    selectUser = (selectFieldId) =>{
         $.post(
             URL + "Users/selectUser",
             {},
@@ -188,9 +188,9 @@ class User {
                         var test = JSON.parse(localStorage.getItem("user"));
                         // var f_name = test.Name + " " + test.Lastname;
                         var id = test.IdUser;
+
                         
-                        //alert (localStorage.getItem("user"));
-                        document.getElementById("selectNames").options[0] = new Option ("Vyber uživatele",0);
+                            document.getElementById(selectFieldId).options[0] = new Option ("Vyber uživatele",0);
                         
                         
                         
@@ -198,17 +198,17 @@ class User {
                         {
                             let fullName = item[i].Name + " " + item[i].Last_name;
                             console.log(fullName);
-                            document.getElementById("selectNames").options[i+1] = new Option(fullName, item[i].IdUser);
+                            document.getElementById(selectFieldId).options[i+1] = new Option(fullName, item[i].IdUser);
                             // V PODMINCE DOSTANEME INDEX POZICI V SELECT DROPDOWNU
                             if(id == item[i].IdUser){
                                 var index = count;
                             }
                             // ZALOGOVANY UZIVATEL JE VLOZENE DO SELECT DROPDOWNU
-                            document.getElementById('selectNames').selectedIndex = index;
+                            document.getElementById(selectFieldId).selectedIndex = index;
                             count++; 
                         }
-
-                        // $('#selectNames').formSelect();
+                        
+                        
                     }
                 }catch(error){
                     alert(error);
