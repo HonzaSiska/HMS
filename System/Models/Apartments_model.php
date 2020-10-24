@@ -5,12 +5,14 @@ class Apartments_model extends Connect{
         parent::__construct();
     }
     public function insertApartment($array,$pics)
-    {
-        $value = "(Unit, Street, City, Rooms,Description) Values (:Unit, :Street, :City, :Rooms, :Description)";
+    {   
+        //var_dump($array);
+        $value = "(Unit, Street, City, Rooms, Description, IdUser) Values (:Unit, :Street, :City, :Rooms, :Description, :IdUser)";
 
         $picsValue ="(FileName , IdApartment) VALUES (:FileName, :IdApartment)";
         //Ulozit novy apartment bez fotek a ziskat nove id
         $data = $this->db->insert2("apartment",$array, $value);
+        // var_dump($data);
         //nove Id
         $id = $data['Id'];
         if(is_array($data))

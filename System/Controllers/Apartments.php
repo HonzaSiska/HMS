@@ -22,25 +22,31 @@ class Apartments extends Controllers {
             if(null != $user)
             {   
 
-                //ZDE PRIJDE QUERY NA VYTVORENI NOVEHO BYTTU A POTOM SE ULOZI FOTKY
+               
                
                 if(isset($_POST['Jednotka']))
                 {
+                    
                     $array = array(
                         $_POST['Jednotka'],
                         $_POST['Ulice'],
                         $_POST['Mesto'],
                         $_POST['Pokoje'],
                         $_POST['Popis'],
+                        (int)$_POST['Uzivatel'],
                     );
+                    //var_dump($this->insertApt($array));
+                    //var_dump($array);
+                    //var_dump($_POST['Uzivatel']);
                     $pics = array();
 
                     if(isset($_FILES['files']))
-                    {
-                         $countFiles = count($_FILES['files']['name']);
-                         
-                         for ($i = 0; $i < $countFiles; $i++)
-                         {
+                    {   
+                        //']);
+                        $countFiles = count($_FILES['files']['name']);
+                        
+                        for ($i = 0; $i < $countFiles; $i++)
+                        {
                             // echo $_FILES['files']['tmp_name'][$i];
                             $type = $_FILES['files']["type"][$i];
                             $tmp_file = $_FILES['files']["tmp_name"][$i];
@@ -53,29 +59,25 @@ class Apartments extends Controllers {
                             }else{
                                 array_push($pics, $newFile);
                             }
-                         }
-                      
+                            
+                        }
                     }else{
-                        //pokud nejsou zadne fotky v poli posli null
-                        $pics = $pics != null ? $pics : null;
-                        //var_dump($pics);
+                        $pics=[];
+                    }
                         $data = $this->model->insertApartment($this->insertApt($array),$pics);
                         echo $data;
-                    }  
+                     
+                     
                 }else
                 {
                     echo 1;
                 }
-                
-             
-                    
-                    
+
                     // $filename = $_FILES['files']['name'][$index];
                     // $ext = pathinfo($filename,PATHINFO_EXTENSION);
                     // $valid_ext = array("png","jpeg","jpg");
                     //zkontroluj jestli extension je povolena
                     // if(in_array($ext,$valid_ext)){
-                    //     //file path
                     //     $path = $upload_location.$filename;
                     // }
              

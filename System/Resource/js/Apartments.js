@@ -23,7 +23,7 @@ class Apartments extends Uploadpicture{
         }else{
             
             var totalFiles = document.getElementById("files").files.length;
-            console.log(totalFiles);
+            
             var data = new FormData();
             for(var index = 0; index<totalFiles;index++)
             {
@@ -36,14 +36,17 @@ class Apartments extends Uploadpicture{
                 // data.append('file', file);
                 //alert(file['name']);
                 //array.push(file);
-            // }); 
-            
+            // });
+            let users = document.getElementById("apartment_user");
+            let user = users.options[users.selectedIndex].value; 
+            data.append('Uzivatel', user);
             data.append('Jednotka', document.querySelector("#apartment_name").value );
             data.append('Ulice', document.querySelector("#apartment_ulice").value );
             data.append('Mesto', document.querySelector("#apartment_city").value );
             data.append('Pokoje', document.querySelector("#apartment_rooms").value );
             data.append('Popis', document.querySelector("#apartment_desc").value );
             // data= JSON.stringify(data);
+
             $.ajax({
                 url: URL + "Apartments/insertApartment",
                 data: data,
@@ -54,6 +57,7 @@ class Apartments extends Uploadpicture{
                 type: 'post',
                 success: (response)=> {
                     console.log(response);
+                    // alert(response)
                     if(response == 0){
                         document.getElementById("apartment_form").reset();
                         document.getElementById("fotos").innerHTML = null;

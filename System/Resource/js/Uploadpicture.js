@@ -31,7 +31,7 @@ class Uploadpicture{
                         // Insertamos la imagen
                         // var output = document.getElementById(id);
                         var image = ['<div class="grid-item"><img src="', e.target.result, '" title="', escape(theFile.name), '"/></div>'].join('');
-                        $(image).appendTo("#fotos");
+                        $(image).appendTo(id);
                     };
                 })(f);
                 reader.readAsDataURL(f);}
