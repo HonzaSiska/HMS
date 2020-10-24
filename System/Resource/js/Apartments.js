@@ -2,12 +2,7 @@ class Apartments extends Uploadpicture{
     constructor() {
         super();
     }
-    getApartments = () =>
-    {
-        console.log("APARTMENTS LOADED");
-    }
-
-
+    
     insertApartment = () =>
     {   
        
