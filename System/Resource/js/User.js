@@ -134,8 +134,9 @@ class User {
             document.getElementById("login_error_message").innerHTML="Zadej platny email";
         }
     }
-
+    //-----------------------------------------------
     // EDITACE UZIVATELSKYCH DAT
+    //-----------------------------------------------
 
     editUser(data){
         this.function = 1;
@@ -245,10 +246,6 @@ class User {
         } 
     }
 
-
-    
-
-    
     userData = (URLactual)=> {
         //alert(URLactual);
         if (PATHNAME == URLactual) {

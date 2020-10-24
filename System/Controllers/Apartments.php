@@ -85,4 +85,34 @@ class Apartments extends Controllers {
             }
         }
     }
+
+    public function getApartments()
+    {
+        $diff = $_POST['data'];
+        $user = Session::getSession('User');
+        if(Session::getSession('User')['Role'] == "admin")
+        {
+            if(null != $user)
+            {
+                $data = $this->model->getApartments("*");
+                if(is_array($data))
+                {
+                    // var_dump($diff);
+                    // var_dump($data);
+                    if($diff =="admin")
+                    {
+                        //html template pro seznam apartmanu na administracni cast
+                        echo "ADMIN";
+                    }
+                    else
+                    {
+                        //html template pro seznam apartmanu na public cast
+                        echo "PUBLIC";
+                    }
+                }else{
+                    //redirect 404
+                }
+            }
+        }
+    }
 }

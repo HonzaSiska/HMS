@@ -157,13 +157,13 @@ var closeAside = (object) => {
   }
 };
 //-------------------------------------------------------
-//UNIVERSAL FUNCTION TO OPEN ASIDE PANEL, THE PARAMETER DETERMINSE WHAT ASIDE PANEL IS OPENED
+//UNIVERSAL FUNCTION TO OPEN ASIDE PANEL, THE PARAMETER DETERMINES WHAT ASIDE PANEL IS OPENED
 //-------------------------------------------------------
 var openAside = (trigger) => {
   w = document.documentElement.clientWidth;
   $("#aside").animate(
     {
-      width: w < 650 ? 300 : 400,
+      width: w < 650 ? 300 : 400, // responsivness
       opacity: 1,
       padding: 20,
     },
@@ -201,13 +201,14 @@ var openAside = (trigger) => {
   }
 };
 
-// -----------------------------------------------------------------------------------------------------------
+
 var sessionClose = () => {
   user.sessionClose();
-  // window.location.href = URL;
 };
 
-// -----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------
+//VLOZ DATA UZIVATELE DO FORMULARE PRO EDITACI
+//-----------------------------------------------
 var dataUser = (data) => {
   openObject("#pop_up", null);
   document.querySelector(".pop_up_section").style.display = "none"; // UJISTIT SE ZE V POPUP OKNE NENI ZADNY OBSAH
@@ -243,6 +244,7 @@ $().ready(() => {
   }
 
   if (URLactual == PATHNAME + "Apartments/apartments") {
+    apartment.getApartments("admin");
     document.getElementById("files").addEventListener("change", archivo, false);
     user.selectUser("apartment_user");
   }

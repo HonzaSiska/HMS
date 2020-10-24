@@ -2,13 +2,13 @@ class Apartments extends Uploadpicture{
     constructor() {
         super();
     }
-    getApartments()
+    getApartments = () =>
     {
         console.log("APARTMENTS LOADED");
     }
 
 
-    insertApartment()
+    insertApartment = () =>
     {   
        
         var error = document.querySelector("#apartment_form_error");
@@ -76,5 +76,16 @@ class Apartments extends Uploadpicture{
         }
         
         
+    }
+    getApartments = (diff) => 
+    {
+        $.post(
+            URL + "Apartments/getApartments",
+            {data: diff},
+            response => 
+            {
+                console.log(response);
+            }
+        )
     }
 }

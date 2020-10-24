@@ -21,10 +21,10 @@ class Users extends Controllers
     }
 
     public function getUsers(){
-        
+        $user = Session::getSession("User");
         // echo  "getUsers()";
         if(Session::getSession('User')['Role'] == "admin"){
-            $user = Session::getSession("User");
+            
             $result="";
             $count = 0;
             $columns = "IdUser, Name, Last_name, Email, Image, Role, Phone";
@@ -57,6 +57,8 @@ class Users extends Controllers
                     
                     
                     // return json_encode($data);
+                }else{
+                    //redirect 404
                 }
             
             }

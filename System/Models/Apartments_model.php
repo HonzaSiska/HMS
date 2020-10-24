@@ -46,6 +46,19 @@ class Apartments_model extends Connect{
         }   
 
     }
+
+    public function getApartments($columns)
+    {
+        $response = $this->db->select1($columns,"apartment", null,null);
+        if(is_array($response))
+        {
+            return $response = $response['results'];
+            
+        }else
+        {
+            echo $response;
+        }
+    }
     
 
     
