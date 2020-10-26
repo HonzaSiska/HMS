@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 body{
     font-family: 'Mulish', sans-serif;
@@ -92,6 +93,11 @@ header {
     
   
 }
+.spacer{
+    height: 50px;
+    background-color: #754cf0;
+    margin: 20px 0 70px;
+}
 
 aside{
     border-top: 1px solid black;
@@ -151,11 +157,29 @@ aside{
     margin:  20px auto;
     
 }
-
-input[type=text], input[type=password],select, textarea{
+.form-wrapper-edit{
+    margin-top: 30px;
+}
+input, select, textarea{
     border: 0.5px solid#754cf0;
     border-radius: 5px;
-    background: transparent;
+    background: white;
+    width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    -webkit-box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
+    -moz-box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
+    box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
+    color: #7763aa;
+    font-size: 12px;
+}
+
+/* input[type=text], input[type=password],input[type=email], select, textarea{
+    border: 0.5px solid#754cf0;
+    border-radius: 5px;
+    background: white;
     width: 100%;
     padding: 8px;
     margin-top: 8px;
@@ -166,7 +190,7 @@ input[type=text], input[type=password],select, textarea{
     box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
     color: #7763aa;
     font-size: 12px;
-}
+} */
 input[type=file]::-webkit-file-upload-button {
     
     padding: .2em .4em;
@@ -177,24 +201,32 @@ input[type=file]::-webkit-file-upload-button {
     transition: 1s;
   }
   
-  input[type=file]::file-selector-button {
-    
-    padding: .2em .4em;
-    border-radius: .2em;
-    border: 1px solid rgb(9, 139, 9, 1);
-    color: white;
-    background-color: rgb(9, 139, 9, 1);
-    transition: 1s;
-  }
+input[type=file]::file-selector-button {
+
+padding: .2em .4em;
+border-radius: .2em;
+border: 1px solid rgb(9, 139, 9, 1);
+color: white;
+background-color: rgb(9, 139, 9, 1);
+transition: 1s;
+}
+input[type=file]:hover {
+
+    background-color: rgb(204, 192, 241);
+    transition: 0.5s;
+    }
 input:focus{
 
-    background: #252423;
+    background: #dbd0f8;
     color: #7763aa;
 
 }
 .input_field_wrapper{
     width:100%;
     margin: auto;
+}
+#input_field_wrapper_img{
+    margin: 20px 0;
 }
 label{
     text-align: left;
@@ -215,13 +247,15 @@ label{
     -moz-box-shadow: 0px 0px 17px -3px rgba(117,76,240,1);
     box-shadow: 0px 0px 17px -3px rgba(117,76,240,1);
 
-
-
 }
+.add_img{
+    margin: 20px 0 20px;
+}
+
 
 footer{
     background-color: #754cf0;
-    position: fixed;
+    /* position: fixed; */
     bottom: 0;
     width: 100%;
     padding: 20px;
@@ -349,6 +383,14 @@ footer p {
 box-shadow: 0px -10px 23px 0px rgb(151, 150, 150); */
 
 }
+.apartment_list_wrapper{
+    padding: 20px;
+    
+}
+/* .edit_apt_imgs-form-wrapper{
+    border-bottom: 20px solid green;
+    padding-bottom: 70px;
+} */
 
 
 
@@ -407,6 +449,7 @@ td{
     box-shadow: 4px 4px 4px -3px rgb(102, 101, 101,1); */
     /* font-weight: 700; */
 }
+
 .delete {
     background-color:rgb(185, 45, 45, 1);
     color: white;
@@ -528,6 +571,45 @@ tbody tr:last-child td{
 .grid-item img{
     width:100%;
 }
+.form-wrapper-edit{
+    display: grid;
+    grid-template-columns: 1fr;
+    -webkit-box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
+    -moz-box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
+    box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
+    margin-bottom: 50px;
+    
+    
+}
+.form-wrapper-edit>div:first-child{
+ background-color: rgba(230, 224, 250, 0.3);  
+}
+.form-wrapper-edit>div{
+    padding: 15px;
+}
+
+ 
+.form-wrapper-edit-grid-item2{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-rows: auto; 
+    /* column-gap: 5px;
+    row-gap: 5px; */
+   
+}
+
+.img-wrapper-edit img {
+    width: 100%;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
+    -moz-box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
+    box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
+}
+.img-wrapper-edit{
+    padding: 5px;
+    
+}
+
 
 
 
@@ -614,6 +696,32 @@ tbody tr:last-child td{
     #chartGrid{
         display:grid;
         grid-template-columns: 1fr 1fr;
+    }
+    /* ==============
+    APARTMENTS
+    =============== */
+    .apartment_list_wrapper{
+        width: 70%;
+        margin: auto;
+    }
+     .form-wrapper-edit{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        /* column-gap: 30px;
+        row-gap: 30px; */
+    }
+
+     
+    .form-wrapper-edit-grid-item2{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr ;
+        grid-template-rows: auto; 
+        column-gap: 3px;
+        row-gap: 0px;
+    }
+    
+    .img-wrapper-edit img {
+        width: 100%;
     }
    
    

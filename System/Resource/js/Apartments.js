@@ -79,7 +79,13 @@ class Apartments extends Uploadpicture{
             {data: diff},
             response => 
             {
-                console.log(response);
+                try {
+                    document.querySelector("#apartment_list_admin").innerHTML=response;
+                    // console.log(response);   
+                } catch (error) {
+                    
+                }
+                //console.log(response);
             }
         )
     }

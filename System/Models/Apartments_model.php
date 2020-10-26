@@ -56,8 +56,32 @@ class Apartments_model extends Connect{
             
         }else
         {
-            echo $response;
+            return $response;
         }
+    }
+    public function getAppImgs($attr, $table, $where, $param){
+        $images = $this->db->select1($attr,$table,$where, $param);
+        if(is_array($images))
+        {
+            return $images=$images['results'];
+        }
+        else{
+            return $images;
+        }
+    }
+    public function getUsers($attr, $table)
+    {
+        $response = $this->db->select1($attr,$table, null, null);
+        if(is_array($response))
+        {
+            return $response = $response['results'];
+            
+        }
+        else
+        {
+            return $response;
+        }
+
     }
     
 
