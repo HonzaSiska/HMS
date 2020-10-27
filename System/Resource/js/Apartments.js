@@ -56,6 +56,7 @@ class Apartments extends Uploadpicture{
                     if(response == 0){
                         document.getElementById("apartment_form").reset();
                         document.getElementById("fotos").innerHTML = null;
+                        this.getApartments("admin");
                     }
                 }
             })
@@ -86,6 +87,37 @@ class Apartments extends Uploadpicture{
                     
                 }
                 //console.log(response);
+            }
+        )
+    }
+
+    deleteImg(img, message, parent)
+    {
+        console.log(img, message, parent);
+        $.post(
+            URL + "Apartments/deleteImg",
+            {
+                img: img
+            
+            },
+            response => 
+            {
+                try {
+                    
+                    console.log(response);
+                    parent.remove();
+                    message.innerHTML=`Fotka ${img} byla smazána !!`;  
+                    setTimeout(function(){  message.innerHTML=""; }, 5000);
+                    
+
+
+                } catch (error) {
+                    console.log(response);
+                    message.innerHTML="Fotka nemohla být smazána !!";
+                    setTimeout(function(){  message.innerHTML=""; }, 5000);
+                    
+                }
+                
             }
         )
     }

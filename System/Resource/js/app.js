@@ -56,6 +56,27 @@ var archivo = (evt) => {
 var insertApartment = () => {
   apartment.insertApartment();
 };
+
+//----------------------------------------------------
+//VYMAZAT FOTKU KONKRETNIHO BYTU
+//----------------------------------------------------
+var delete_img = (e) => {
+ 
+  //console.log(e.getAttribute('data-img'));
+  
+  parent = e.parentElement;
+  //p element pro zobrazeni message po vymazani fotky
+  message = parent.parentElement.nextSibling;// param 2
+  img = e.getAttribute('data-img');// param 1
+  console.log(message);
+
+  parent.remove();
+
+  apartment.deleteImg(img, message,parent);
+  
+  
+}
+
 // document.getElementById('files').addEventListener('change', uploadpicture.archivo("fotos"), false);
 
 //-------------------------------------------------------
@@ -273,4 +294,7 @@ $().ready(() => {
       parent.innerHTML = "";
     }
   });
+  
+ 
+  
 });

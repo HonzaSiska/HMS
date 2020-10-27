@@ -83,6 +83,20 @@ class Apartments_model extends Connect{
         }
 
     }
+    public function deleteImg($fileName)
+    {
+        $where = " WHERE FileName = :FileName";
+        $response = $this->db->delete("photos", $where, array("FileName"=>$fileName));
+        if(is_bool($response))
+        {   
+
+            return 0;
+        }else{
+            return $response;
+        }
+        
+        
+    }
     
 
     

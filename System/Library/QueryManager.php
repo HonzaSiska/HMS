@@ -76,6 +76,7 @@ class QueryManager
             $query = "DELETE FROM ".$table.$where;
             $sth = $this->pdo->prepare($query);
             $sth->execute($param);
+            return true;
         } catch (PDOException $e) {
             return $e->getMessage();
         }

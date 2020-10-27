@@ -598,7 +598,7 @@ tbody tr:last-child td{
    
 }
 
-.img-wrapper-edit img {
+.apt_img {
     width: 100%;
     border-radius: 5px;
     -webkit-box-shadow: 0px 0px 10px -3px rgba(117,76,240,1);
@@ -607,7 +607,16 @@ tbody tr:last-child td{
 }
 .img-wrapper-edit{
     padding: 5px;
+    position: relative;
     
+}
+.delete_img{
+    width: 20px;
+    position: absolute;
+    right: 0;
+    top: -5px;
+    cursor: pointer;
+
 }
 
 
@@ -720,8 +729,14 @@ tbody tr:last-child td{
         row-gap: 0px;
     }
     
-    .img-wrapper-edit img {
+    .apt_img{
         width: 100%;
+    }
+    .delete_img{
+        width: 20px;
+        right: 0px;
+        ;
+        
     }
    
    

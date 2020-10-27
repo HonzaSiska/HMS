@@ -118,10 +118,10 @@ class Apartments extends Controllers {
                             $output .="<h2>".$item['Unit']."</h2>";
                             $output .= '<div class="form-wrapper-edit">';
                                 
-;
+
                                 //GRID ITEM 1
                                 $output .= '<div class="form-wrapper-edit-grid-item">';
-                                    $output .= '<form id="apartment_form-edit"  method="POST" class="add_apartment" enctype="multipart/form-data onsubmit="return false;">';
+                                    $output .= '<form id="apartment_form-edit"  method="POST" class="add_apartment" enctype="multipart/form-data" onsubmit="return false;">';
 
                                         $output .= '<label for="apartment_name_edit" class="login_label">* Jednotka</label>';
                                         $output .=  '<input id="apartment_name_edit" type="text" name="apartment_name" value="'.$item['Unit'].'">';
@@ -161,12 +161,10 @@ class Apartments extends Controllers {
                                     
                                 $output .= "</div>";
 
-                                //QUERY-----------------------------
                                 //VYTAHNOUT FOTKY K TOMUTU APARTMANU
                                 $where = " WHERE IdApartment = :IdApartment";
                                 $param = array("IdApartment"=> $item['IdApartment']);
                                 $images = $this->model->getAppImgs("*", "photos", $where, $param);
-                                //-----------------------------------
 
                                 //GRID ITEM 2
                                 $output .= '<div>';
@@ -175,18 +173,21 @@ class Apartments extends Controllers {
                                     foreach($images as $img)
                                     {
                                         $output .='<div class="img-wrapper-edit">';
-                                            //jsem prijde ikonka na vymazani fotky
-                                            $output .='<img src="'.URL. RQ .'images/photos/images/'.$img['FileName'].'" alt="fotka -'.$img['FileName'].'" data-id="'.$img['IdPhoto'].'">';
+                                            $output .= '<img ondblclick="delete_img(this);" data-img="'.$img['FileName'].'" class="delete_img"  src="'.URL. RQ .'images/icons/close.svg">';
+                                          
+                                            $output .='<img class="apt_img" src="'.URL. RQ .'images/photos/images/'.$img['FileName'].'" alt="fotka -'.$img['FileName'].'" data-id="'.$img['IdPhoto'].'">';
                                            
                                         $output.="</div>";
+                                        
                                     }
                                     
                                     $output .= "</div>";
+                                    $output .= "<p class='error'></p>";
 
                                     //FORMULAR PRO PRIDANI NOVYCH FOTEK
                                     $output .= '<div id ="edit_apt_imgs-form-wrapper">';
 
-                                        $output .='<form id ="apartment_image-edit" class="" enctype="multipart/form-data onsubmit="return false;">';
+                                        $output .='<form id ="apartment_image-edit" class="" enctype="multipart/form-data" onsubmit="return false;">';
                                             $output .='<div id="input_field_wrapper_img" class="input_field_wrapper">';
                                                 $output .= '<label for="apartment_fotky_edit" class="login_label">Fotky</label>';
                                                 $output .="<br>";
@@ -219,6 +220,37 @@ class Apartments extends Controllers {
                     //redirect 404
                 }
             }
+        }
+    }
+
+    public function deleteImg(){
+        //var_dump($_POST['img']);
+        if (Session::getSession('User')['Role'] == "admin")
+        {
+            $user = Session::getSession('User');
+            if(null != $user) 
+            {
+                if(isset($_POST['img']))
+                {
+                    $data = $this->model->deleteImg($_POST['img']);
+                    if($data == 0)
+                    {
+                        //-----------
+                        //unlink file
+                        //------------
+                        return 0;
+
+                    }else{
+                        return 1;//fotka nemohla byt odstranena
+                    }
+                }else
+                {
+                    return 1;//fotka nemohla byt odstranena
+                }
+            }
+
+        }else{
+            return  2;//nemas pristup
         }
     }
 }
