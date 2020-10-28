@@ -51,9 +51,19 @@ var goMenu = () => {
   window.location.href = URL + "Principal/principal";
 };
 var archivo = (evt) => {
+  
   apartment.archivo(evt, "#fotos");
+
+
 };
+var archivo2 = (id) => {
+  //var pics = document.getElementById(field).files;
+ 
+//console.log(document.getElementById(id).files);
+   //tahle funkce ted nic nedela
+}
 var insertApartment = () => {
+  
   apartment.insertApartment();
 };
 
@@ -267,7 +277,8 @@ $().ready(() => {
   if (URLactual == PATHNAME + "Apartments/apartments") {
     apartment.getApartments("admin");
     document.getElementById("files").addEventListener("change", archivo, false);
-    user.selectUser("apartment_user");
+    //  document.querySelector(".aptFiles").addEventListener("change", archivo2, false);
+    // user.selectUser("apartment_user");
   }
 
   //----------------------------------------------------

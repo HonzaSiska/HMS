@@ -21,12 +21,8 @@ class Apartments extends Controllers {
         {
             if(null != $user)
             {   
-
-               
-               
                 if(isset($_POST['Jednotka']))
                 {
-                    
                     $array = array(
                         $_POST['Jednotka'],
                         $_POST['Ulice'],
@@ -52,26 +48,23 @@ class Apartments extends Controllers {
                             $tmp_file = $_FILES['files']["tmp_name"][$i];
                             $newFile=$_FILES['files']["name"][$i];
                             $folder = "images/";
-                            
                             $succes = $this->image->fileToUpload($type,$folder,$newFile,$tmp_file);
                             if($succes != true){
                                 echo "Fotka $newFile nemaohla být uložena !!";
                             }else{
+                                //FOTKY JSOU ULOZENY V ARRAY $PICS A POSLANY DO MODELU K ULOZENI ZAROVEN S NOVYM APARTMANEM
                                 array_push($pics, $newFile);
                             }
-                            
                         }
                     }else{
                         $pics=[];
                     }
                         $data = $this->model->insertApartment($this->insertApt($array),$pics);
                         echo $data;
-                     
                 }else
                 {
                     echo 1;
                 }
-
                     // $filename = $_FILES['files']['name'][$index];
                     // $ext = pathinfo($filename,PATHINFO_EXTENSION);
                     // $valid_ext = array("png","jpeg","jpg");
@@ -79,8 +72,6 @@ class Apartments extends Controllers {
                     // if(in_array($ext,$valid_ext)){
                     //     $path = $upload_location.$filename;
                     // }
-             
-                
             }
         }
     }
@@ -94,31 +85,22 @@ class Apartments extends Controllers {
         {
             if(null != $user)
             {
-
-                
                 //--------VYTAHNOU VSECHNY APARTMANY Z DB--------
                 $data = $this->model->getApartments("*");
-                //-----------------------------------------
-
                 //--------VYTAHNOU UZIVATELE APARTMANY Z DB--------
                 $users = $this->model->getUsers("IdUser,Name, Last_name","users");
                 //-----------------------------------------------
                 //var_dump($users);
-
                 if(is_array($data))
                 {
                     if($diff =="admin")
                     {
-
                         //TEMPLATE APARTMANY PRO ADMIN
                         foreach($data as $item)
                         {
-
                             //GRID
                             $output .="<h2>".$item['Unit']."</h2>";
                             $output .= '<div class="form-wrapper-edit">';
-                                
-
                                 //GRID ITEM 1
                                 $output .= '<div class="form-wrapper-edit-grid-item">';
                                     $output .= '<form id="apartment_form-edit"  method="POST" class="add_apartment" enctype="multipart/form-data" onsubmit="return false;">';
@@ -145,31 +127,23 @@ class Apartments extends Controllers {
                                                 $fullName = $person['Name']." ".$person['Last_name'];
                                                 if($person['IdUser'] != $item['IdUser'])
                                                 {
-                                                    
                                                     $output .= '<option value="'.$person['IdUser'].'">'.$fullName.'</option>';
                                                 }else{
                                                     $output .= '<option value="'.$person['IdUser'].'" selected>'.$fullName.'</option>';
                                                 }
-
                                             }
-                                        
-                                            //CYCLUS PRO UZIVATELE;
+                                        //CYCLUS PRO UZIVATELE;
                                         $output .= '</select>';
                                         $output .='<button onclick="apartment.updateApartment("'.$item['IdApartment'].'");" id="add_apartment_img" class="btn add_img">Aktualizovat</button>';
-
                                     $output .='</form>';
-                                    
                                 $output .= "</div>";
-
                                 //VYTAHNOUT FOTKY K TOMUTU APARTMANU
                                 $where = " WHERE IdApartment = :IdApartment";
                                 $param = array("IdApartment"=> $item['IdApartment']);
                                 $images = $this->model->getAppImgs("*", "photos", $where, $param);
-
                                 //GRID ITEM 2
                                 $output .= '<div>';
                                     $output .= '<div class="form-wrapper-edit-grid-item2">';
-
                                     foreach($images as $img)
                                     {
                                         $output .='<div class="img-wrapper-edit">';
@@ -178,7 +152,6 @@ class Apartments extends Controllers {
                                             $output .='<img class="apt_img" src="'.URL. RQ .'images/photos/images/'.$img['FileName'].'" alt="fotka -'.$img['FileName'].'" data-id="'.$img['IdPhoto'].'">';
                                            
                                         $output.="</div>";
-                                        
                                     }
                                     
                                     $output .= "</div>";
@@ -191,10 +164,10 @@ class Apartments extends Controllers {
                                             $output .='<div id="input_field_wrapper_img" class="input_field_wrapper">';
                                                 $output .= '<label for="apartment_fotky_edit" class="login_label">Fotky</label>';
                                                 $output .="<br>";
-                                                $output .='<input class="" accept="image/*" type="file" id="files" name="files[]" multiple="">';
+                                                $output .='<input onchange="archivo2(\'aptFiles'.$item['IdApartment'].'\')" id="aptFiles'.$item['IdApartment'].'"class="aptFiles" accept="image/*" type="file" id="" name="files[]" multiple="">';
                                             $output.="</div>";
                                             $output .= '<center>';
-                                                $output .='<button onclick="apartment.addImages("'.$item['IdApartment'].'");" id="add_apartment_btn" class="btn add_img">Přidat fotky</button>';
+                                                $output .='<button onclick="apartment.addImages(\'aptFiles'.$item['IdApartment'].'\',\''.$item['IdApartment'].'\');" id="add_apartment_btn" class="btn add_img">Přidat fotky</button>';
                                             $output.="</center>";
                                         $output .= "</form>";
 
@@ -203,13 +176,11 @@ class Apartments extends Controllers {
                             $output .= "</div>";
                             // $output .= '<div class ="spacer">';
                             // $output .='</div>';
-                        
                         }
                         //------------------
                         // VYSLEDEK PRO AJAX
                         //------------------
                         echo $output;
-                        
                     }
                     else
                     {
@@ -236,8 +207,11 @@ class Apartments extends Controllers {
                     if($data == 0)
                     {
                         //-----------
-                        //unlink file
+                        //Po vymazani fotky z DB musi byt odstranena i z ze slozky
                         //------------
+
+                        //bylo by dobre zkontrolovat, jestli vymazana fotka z db nepatri i jinemu zaznamu, potom by se nemohla odstranit z folderu, protoze je pouzita jinde
+                        unlink(RQ."images/photos/images/".$_POST['img']);
                         return 0;
 
                     }else{
@@ -251,6 +225,50 @@ class Apartments extends Controllers {
 
         }else{
             return  2;//nemas pristup
+        }
+    }
+    public function addImages()
+    {
+        if(Session::getSession('User')['Role'] == "admin")
+        {
+            $user = Session::getSession('User');
+            if(null != $user) 
+            {
+                if(isset($_FILES['files']) && isset($_POST['IdApartment']))
+                {
+                    $error = 0;
+                    $countFiles = count($_FILES['files']['name']);
+                    $id = $_POST['IdApartment']; 
+                    for ($i = 0; $i < $countFiles; $i++)
+                    {
+                        //Vloz Fotky jednu po druhe
+                        $data = $this->model->addImages($id, $_FILES['files']["name"][$i]);
+                        if($data == 0)
+                        {
+
+                            $type = $_FILES['files']["type"][$i];
+                            $tmp_file = $_FILES['files']["tmp_name"][$i];
+                            $newFile=$_FILES['files']["name"][$i];
+                            $folder = "images/";
+                            $succes = $this->image->fileToUpload($type,$folder,$newFile,$tmp_file);
+                        }else{
+                            $error++;
+                        }
+                    }
+                    //Pokud je error 2 , tak se nejaka fotka NEULOZILA.
+                    if($error != 0){
+                        return 0;
+                    }else{
+                        return 2;
+                    }
+                }else
+                {
+                    return 1;
+                }
+            }
+
+        }else{
+            return  1;//nemas pristup
         }
     }
 }

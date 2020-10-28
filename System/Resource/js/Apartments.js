@@ -121,4 +121,71 @@ class Apartments extends Uploadpicture{
             }
         )
     }
+    addImages(id, IdApartment)
+    {   
+        var message = document.getElementById(id);
+        var totalFiles = document.getElementById(id).files.length;
+        if(totalFiles != 0)
+        {
+            
+            var data = new FormData();
+            for(var index = 0; index < totalFiles;index++)
+            {
+                data.append('files[]',document.getElementById(id).files[index]);
+            }
+            data.append('IdApartment',IdApartment);
+            
+            $.ajax({
+                url: URL + "Apartments/addImages",
+                data: data,
+                cache: false,
+                // dataType: 'json',
+                contentType: false,
+                processData: false,
+                type: 'post',
+                success: (response)=> {
+                    console.log(response);
+                    // alert(response)
+                    if(response == 0){
+
+
+                        this.getApartments("admin");
+                    }else if(response == 1){
+                        
+                        message.parentElement.parentElement.parentElement.previousSibling.innerHTML="stala se chyba !!";
+
+                        setTimeout(()=>{
+                            message.parentElement.parentElement.parentElement.previousSibling.innerHTML="";
+                        },3000)
+                        
+                        // message.parentElement.previousSibling.innerHTML=" stachyba !!";
+                    }else
+                    {
+                        message.parentElement.parentElement.parentElement.previousSibling.innerHTML="Některá z fotek nebyla ulozena!!";
+
+                        setTimeout(()=>{
+                            message.parentElement.parentElement.parentElement.previousSibling.innerHTML="";
+                        },3000)
+                        this.getApartments("admin");
+                        
+                    }
+                }
+
+            })
+
+        }else
+        {
+         
+            let message = document.getElementById(id);
+            
+            console.log(message.parentElement.parentElement.parentElement.previousSibling);
+            message.parentElement.parentElement.parentElement.previousSibling.innerHTML="Vyber fotku !!";
+
+            setTimeout(()=>{
+                message.parentElement.parentElement.parentElement.previousSibling.innerHTML="";
+            },3000)
+        }
+
+            
+    }
 }

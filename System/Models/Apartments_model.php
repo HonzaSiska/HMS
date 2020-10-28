@@ -97,6 +97,19 @@ class Apartments_model extends Connect{
         
         
     }
+    public function addImages($id, $file)
+    {   
+        //var_dump($id, $file);
+        $value = "(FileName , IdApartment) VALUES (:FileName, :IdApartment)";
+        $data = $this->db->insert("photos",array("IdApartment" => (int)$id, "FileName"=>$file), $value);
+        if(is_bool($data)){
+            //var_dump($data);
+            return 0;
+        }else{
+            return 1;
+        }
+
+    }
     
 
     
