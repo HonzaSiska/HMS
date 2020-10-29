@@ -1,11 +1,14 @@
 <div class="container_principal">
-
-
-
-    <div class="pop_up_apartment" id="pop_up_apartment">
+    <h1 class="aptAdd">Přidej nový byt <span><img onclick="openPopUpWindow()" id="openAddAptPopUp" class="add" src="../Resource/images/icons/add.svg" alt=""></span>
+    </h1>
+    
+    
+ 
+    
+    <div class="closed" id='addAptPopUp'>
         <!-- Pridat apartment -->
         <div class="form_wrapper">
-
+            
             <form  id="apartment_form" method="POST" class="add_apartment" enctype="multipart/form-data" onsubmit="return false;">
                 <div class="input_field_wrapper">
                     <label for="apartment_name" class="login_label" >* Jednotka</label>

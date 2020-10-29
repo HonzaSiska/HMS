@@ -250,6 +250,12 @@ var dataUser = (data) => {
   user.editUser(data);
 };
 
+var openPopUpWindow = () => {
+  //slide in popup
+  document.getElementById('addAptPopUp').classList.add("popupIsOpen");
+  document.getElementById('addAptPopUp').classList.remove("closed");
+}
+
 $().ready(() => {
   let URLactual = window.location.pathname;
   user.userData(URLactual); // CONTROLA JESTLI JSME NA HLAVNI STRANE,JESTLI ANO,ScHOVEJ HEADER atd.
@@ -305,7 +311,9 @@ $().ready(() => {
       parent.innerHTML = "";
     }
   });
+
   
- 
+   
+    
   
 });

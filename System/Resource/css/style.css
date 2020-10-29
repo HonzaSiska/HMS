@@ -33,7 +33,7 @@ h1{
     margin: 15px;
     font-weight: 400;
     background-color:transparent;
-    color: black;
+    color:#7763aa;
 }
 h6{
     color: #7763aa;
@@ -93,6 +93,17 @@ header {
     
   
 }
+.add{
+    width: 40px;
+    position: relative;
+    top: 7px;
+    
+}
+.aptAdd{
+   
+}
+
+
 .spacer{
     height: 50px;
     background-color: #754cf0;
@@ -571,6 +582,7 @@ tbody tr:last-child td{
 .grid-item img{
     width:100%;
 }
+
 .form-wrapper-edit{
     display: grid;
     grid-template-columns: 1fr;
@@ -618,6 +630,50 @@ tbody tr:last-child td{
     cursor: pointer;
 
 }
+#openAddAptPopUp:hover{
+   opacity: 0.7;
+    cursor: pointer;
+}
+#addAptPopUp{
+    width: 95%;
+    -webkit-box-shadow: 0px 0px 17px -3px rgba(117,76,240,1);
+    -moz-box-shadow: 0px 0px 17px -3px rgba(117,76,240,1);
+    box-shadow: 0px 0px 17px -3px rgba(117,76,240,1);
+    background-color: rgb(240, 238, 248);
+    height: 95vh;
+   
+
+}
+.closed{
+    left: -100%;
+
+    position: absolute;
+    
+    
+   
+}
+
+.popupIsOpen{
+    top: 10px;
+    position: absolute;
+    left: 50%;
+   
+
+    transform: translateX(-50%); 
+    animation-duration: 1s;
+    animation-name: slide;
+    /* animation-iteration-count: infinite; */
+ 
+    
+
+}
+@keyframes slide {
+    from {  left: -100%; }
+    to {left: 50%; }
+  }
+
+
+
 
 
 
@@ -737,6 +793,10 @@ tbody tr:last-child td{
         right: 0px;
         ;
         
+    }
+    #addAptPopUp{
+        width: 70%;
+    
     }
    
    
