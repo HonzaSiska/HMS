@@ -56,6 +56,8 @@ class Apartments extends Uploadpicture{
                     if(response == 0){
                         document.getElementById("apartment_form").reset();
                         document.getElementById("fotos").innerHTML = null;
+                        document.getElementById('addAptPopUp').classList.remove("popupIsOpen");
+                    document.getElementById('addAptPopUp').classList.add("closed");
                         this.getApartments("admin");
                     }
                 }
@@ -187,5 +189,28 @@ class Apartments extends Uploadpicture{
         }
 
             
+    }
+    deleteApartment(IdApartment)
+    {
+        $.post(
+            URL + "Apartments/deleteApartment",
+            {
+                IdApt : IdApartment
+            }, 
+            response => {
+                if(response == 0)
+                {
+                    slideUp(null);  
+                    this.getApartments("admin");
+                    
+                    
+                }else{
+                     //alert("Byt nebyl smazán !!");
+                    alert(response);
+                }
+
+            }
+        )
+        
     }
 }

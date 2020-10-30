@@ -103,8 +103,11 @@ class Users_model extends Connect{
         }
     }
     function deleteUser($idUser, $email){
+        $mail= $email;
+        //echo $idUser;
         $where =" WHERE IdUser = :IdUser";
         $data = $this->db->delete("users",$where, array("IdUser" => $idUser));
+        
         if(is_bool($data)){
             return 0;
         }else{

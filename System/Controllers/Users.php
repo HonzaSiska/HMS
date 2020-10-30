@@ -201,7 +201,7 @@ class Users extends Controllers
     public function deleteUser(){
         $user = Session::getSession('User');
         // echo Session::getSession('User')['Role'];
-        // echo $_POST['idUser'];
+        //echo $_POST['idUser'];
         // echo $_POST['email'];
         if(null != $user){
             if("admin" == $user['Role']){

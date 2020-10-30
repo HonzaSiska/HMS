@@ -60,10 +60,13 @@ class Apartments_model extends Connect{
         }
     }
     public function getAppImgs($attr, $table, $where, $param){
+       // var_dump($attr, $table, $where, $param);
         $images = $this->db->select1($attr,$table,$where, $param);
+        //var_dump($images);
         if(is_array($images))
         {
             return $images=$images['results'];
+
         }
         else{
             return $images;
@@ -109,6 +112,18 @@ class Apartments_model extends Connect{
             return 1;
         }
 
+    }
+    public function deleteApartment($id)
+    {
+        $where = " WHERE IdApartment = :IdApartment";
+        $response = $this->db->delete("Apartment", $where, array("IdApartment" => (int)$id));
+        if(is_bool($response))
+        {
+            echo 0;
+        }
+        else{
+            echo $response;
+        }
     }
     
 

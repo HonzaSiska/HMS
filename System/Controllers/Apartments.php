@@ -99,7 +99,8 @@ class Apartments extends Controllers {
                         foreach($data as $item)
                         {
                             //GRID
-                            $output .="<h2>".$item['Unit']."</h2>";
+                            
+                            $output .='<h2>'.$item['Unit'].'<span>  <img onclick="slideDown(\''.$item['IdApartment'].'\',3)" id="deleteApt" class="remove" src="../Resource/images/icons/rubbish.svg" alt=""></span></h2>';
                             $output .= '<div class="form-wrapper-edit">';
                                 //GRID ITEM 1
                                 $output .= '<div class="form-wrapper-edit-grid-item">';
@@ -270,5 +271,41 @@ class Apartments extends Controllers {
         }else{
             return  1;//nemas pristup
         }
+    }
+    public function deleteApartment()
+    {
+        if(Session::getSession('User')['Role'] == 'admin')
+        {
+            $user = Session::getSession('User')['Role'];
+            if( null != $user){
+                $id = $_POST['IdApt'];
+                $where = " WHERE IdApartment = :IdApartment";
+                $param = array("IdApartment"=> $id);
+                $images = $this->model->getAppImgs("*", "photos", $where, $param);
+                 // Odstranit fotky z folderu
+                foreach($images as $img){
+                    unlink(RQ."images/photos/images/".$img['FileName']);
+                }
+                //odstranit apartment
+                $data = $this->model->deleteApartment($id);
+                if($data == 0)
+                {
+                    
+                    echo 0;
+                }else
+                {
+                    echo $data;
+                }
+
+                
+            }else{
+                echo "Nemáš přístup !!";
+            }
+
+        
+        }else{
+            echo "Nemáš přístup !!";
+        };
+        
     }
 }

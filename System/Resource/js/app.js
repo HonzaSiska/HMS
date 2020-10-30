@@ -124,7 +124,21 @@ var slideDown = (data, switchData) => {
         ");'>Smazat</button>";
       output += "</div>";
       document.getElementById("slide_down").innerHTML = output;
-      break;
+        break;
+      case 3:
+        var output = "<div id='slide_down_button_wrapper'>";
+        output +=
+          "<button id='comfirm_btn' class='table_btn edit' onclick='slideUp();'>Zrušit</button>";
+        output +=
+          "<button id='delete_user_btn' class='table_btn delete' onclick='apartment.deleteApartment(" +
+          data +
+          ");'>Smazat</button>";
+        output += "</div>";
+       
+        document.getElementById("slide_down").innerHTML = output;
+        
+        break;
+
   }
   passUserData = data;
 };
@@ -255,6 +269,11 @@ var openPopUpWindow = () => {
   document.getElementById('addAptPopUp').classList.add("popupIsOpen");
   document.getElementById('addAptPopUp').classList.remove("closed");
 }
+var closePopUpWindow = () => {
+  //slide in popup
+  document.getElementById('addAptPopUp').classList.remove("popupIsOpen");
+  document.getElementById('addAptPopUp').classList.add("closed");
+}
 
 $().ready(() => {
   let URLactual = window.location.pathname;
@@ -284,7 +303,7 @@ $().ready(() => {
     apartment.getApartments("admin");
     document.getElementById("files").addEventListener("change", archivo, false);
     //  document.querySelector(".aptFiles").addEventListener("change", archivo2, false);
-    // user.selectUser("apartment_user");
+     user.selectUser("apartment_user");
   }
 
   //----------------------------------------------------
