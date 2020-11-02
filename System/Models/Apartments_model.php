@@ -125,9 +125,20 @@ class Apartments_model extends Connect{
             echo $response;
         }
     }
-    
+    public function updateApartment($array,$aptId)
+    {
+        $value = "Unit = :Unit, Street = :Street, City = :City, Rooms = :Rooms, Description = :Description, IdUser = :IdUser";
+        $where = " WHERE IdApartment = $aptId";
+        $data = $this->db->update("apartment",$array,$value,$where);
+        if(is_bool($data))
+        {
+            echo 0;
+        }else{
+            echo $data;
 
-    
+        }
+    }
+ 
 }
 
 ?>

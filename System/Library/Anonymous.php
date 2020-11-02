@@ -57,6 +57,31 @@ class Anonymous
             
         };
     }
+    public function updateApt(array $array)
+    {
+        return new class($array)
+        {
+            
+            var $Unit;
+            var $Street;
+            var $City;
+            var $Rooms;
+            var $Description;
+            var $IdUser;
+
+            function __construct($array)
+            {
+                $this->Unit = $array[0];
+                $this->Street = $array[1];
+                $this->City = $array[2];
+                $this->Rooms = $array[3];
+                $this->Description = $array[4];
+                $this->IdUser = $array[5];
+                
+            }
+            
+        };
+    }
 }
 
 ?>

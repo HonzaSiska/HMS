@@ -86,7 +86,7 @@ class Apartments extends Uploadpicture{
                     document.querySelector("#apartment_list_admin").innerHTML=response;
                     // console.log(response);   
                 } catch (error) {
-                    
+                    console.log(error) ;
                 }
                 //console.log(response);
             }
@@ -212,5 +212,53 @@ class Apartments extends Uploadpicture{
             }
         )
         
+    }
+    updateApartment(id){
+        console.log(id);
+        var error = document.querySelector("#apartment_edit_form_error"+id);
+        if(
+            document.querySelector("#apartment_name_edit"+id).value=="" ||
+            document.querySelector("#apartment_ulice_edit"+id).value=="" ||
+            document.querySelector("#apartment_city_edit"+id).value=="" ||
+            document.querySelector("#apartment_rooms_edit"+id).value=="" 
+        )
+        {
+            error.innerHTML = "Všechna pole s hvezdičkou musí být vyplněna";
+        }else{
+            let users = document.getElementById("apartment_user_edit"+id);
+            let user = users.options[users.selectedIndex].value;
+            var data = new FormData();
+            data.append('Uzivatel', user);
+            data.append('Jednotka', document.querySelector("#apartment_name_edit"+id).value );
+            data.append('Ulice', document.querySelector("#apartment_ulice_edit"+id).value );
+            data.append('Mesto', document.querySelector("#apartment_city_edit"+id).value );
+            data.append('Pokoje', document.querySelector("#apartment_rooms_edit"+id).value );
+            data.append('Popis', document.querySelector("#apartment_desc_edit"+id).value );
+            data.append('aptId', id);
+
+            $.ajax({
+                url: URL + "Apartments/updateApartment",
+                data: data,
+                cache: false,
+                // dataType: 'json',
+                contentType: false,
+                processData: false,
+                type: 'post',
+                success: (response)=> {
+                    console.log(response);
+                    // alert(response)
+                    if(response == 0){
+                        document.getElementById("apartment_form-edit"+id).reset();
+                        this.getApartments("admin");
+                        
+                    }else{
+                        error.innerHTML = response;
+                        setTimeout(() => {
+                            error.innerHTML = "";
+                        }, 5000);
+                    }
+                }
+            })
+        }
     }
 }

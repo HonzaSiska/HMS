@@ -34,7 +34,7 @@ h1{
     font-weight: 400;
     background-color:transparent;
     /* color:#7763aa; */
-    opacity: 0.8;
+    /* opacity: 0.8; */
 }
 h6{
     color: #7763aa;
@@ -97,7 +97,7 @@ header {
 .add{
     width: 40px;
     position: relative;
-    top: 7px;
+    top: 10px;
     
 }
 .remove{
@@ -592,7 +592,8 @@ tbody tr:last-child td{
 .grid-item{
         width:100%;
         align-self: center;
-        background:red;
+     
+        padding: 2px;
 }
 .grid-item img{
     width:100%;
@@ -659,6 +660,14 @@ tbody tr:last-child td{
     z-index:6000;
    
 
+}
+.aptAdd{
+    border: 4px solid rgba(117,76,240);
+    padding-bottom: 10px;
+    width: 270px;
+    margin: auto;
+    border-radius: 50px;
+    
 }
 .closed{
     left: -100%;

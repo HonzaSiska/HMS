@@ -104,25 +104,25 @@ class Apartments extends Controllers {
                             $output .= '<div class="form-wrapper-edit">';
                                 //GRID ITEM 1
                                 $output .= '<div class="form-wrapper-edit-grid-item">';
-                                    $output .= '<form id="apartment_form-edit"  method="POST" class="add_apartment" enctype="multipart/form-data" onsubmit="return false;">';
+                                    $output .= '<form id="apartment_form-edit'.$item['IdApartment'].'"  method="POST" class="add_apartment" enctype="multipart/form-data" onsubmit="return false;">';
 
-                                        $output .= '<label for="apartment_name_edit" class="login_label">* Jednotka</label>';
-                                        $output .=  '<input id="apartment_name_edit" type="text" name="apartment_name" value="'.$item['Unit'].'">';
+                                        $output .= '<label for="apartment_name_edit'.$item['IdApartment'].'" class="login_label">* Jednotka</label>';
+                                        $output .=  '<input id="apartment_name_edit'.$item['IdApartment'].'" type="text" name="apartment_name" value="'.$item['Unit'].'">';
 
-                                        $output .= '<label for="apartment_ulice_edit" class="login_label">* Ulice</label>';
-                                        $output .=  '<input id="apartment_ulice_edit" type="text" name="apartment_ulice" value="'.$item['Street'].'">';
+                                        $output .= '<label for="apartment_ulice_edit'.$item['IdApartment'].'" class="login_label">* Ulice</label>';
+                                        $output .=  '<input id="apartment_ulice_edit'.$item['IdApartment'].'" type="text" name="apartment_ulice" value="'.$item['Street'].'">';
 
-                                        $output .= '<label for="apartment_city_edit" class="login_label">* Město</label>';
-                                        $output .=  '<input id="apartment_city_edit" type="text" name="apartment_city" value="'.$item['City'].'">';
+                                        $output .= '<label for="apartment_city_edit'.$item['IdApartment'].'" class="login_label">* Město</label>';
+                                        $output .=  '<input id="apartment_city_edit'.$item['IdApartment'].'" type="text" name="apartment_city" value="'.$item['City'].'">';
 
-                                        $output .= '<label for="apartment_rooms_edit" class="login_label">* Počet pokojů</label>';
-                                        $output .=  '<input id="apartment_rooms_edit" type="text" name="apartment_rooms" value="'.$item['Rooms'].'">';
+                                        $output .= '<label for="apartment_rooms_edit'.$item['IdApartment'].'" class="login_label">* Počet pokojů</label>';
+                                        $output .=  '<input id="apartment_rooms_edit'.$item['IdApartment'].'" type="text" name="apartment_rooms" value="'.$item['Rooms'].'">';
 
-                                        $output .= '<label for="apartment_desc_edit" class="login_label">Popis</label>';
-                                        $output .= '<textarea id="apartment_desc_edit" name="apartment_desc">'.$item['Description'].'</textarea>';
+                                        $output .= '<label for="apartment_desc_edit'.$item['IdApartment'].'" class="login_label">Popis</label>';
+                                        $output .= '<textarea id="apartment_desc_edit'.$item['IdApartment'].'" name="apartment_desc">'.$item['Description'].'</textarea>';
 
-                                        $output .= '<label for="apartment_user_edit" class="login_label">Uživatel</label>';
-                                        $output .= '<select id="apartment_user_edit" class="apartment_user">';
+                                        $output .= '<label for="apartment_user_edit'.$item['IdApartment'].'" class="login_label">Uživatel</label>';
+                                        $output .= '<select id="apartment_user_edit'.$item['IdApartment'].'" class="apartment_user">';
                                             foreach($users as $person)
                                             {   
                                                 $fullName = $person['Name']." ".$person['Last_name'];
@@ -135,7 +135,8 @@ class Apartments extends Controllers {
                                             }
                                         //CYCLUS PRO UZIVATELE;
                                         $output .= '</select>';
-                                        $output .='<button onclick="apartment.updateApartment("'.$item['IdApartment'].'");" id="add_apartment_img" class="btn add_img">Aktualizovat</button>';
+                                        $output .='<label class="error message" id="apartment_edit_form_error'.$item['IdApartment'].'"></label>';
+                                        $output .='<button onclick="apartment.updateApartment(\''.$item['IdApartment'].'\');" id="add_apartment_img" class="btn add_img">Aktualizovat</button>';
                                     $output .='</form>';
                                 $output .= "</div>";
                                 //VYTAHNOUT FOTKY K TOMUTU APARTMANU
@@ -307,5 +308,47 @@ class Apartments extends Controllers {
             echo "Nemáš přístup !!";
         };
         
+    }
+    public function updateApartment()
+    {
+
+        if(Session::getSession('User') != null)
+        {   
+            $user = Session::getSession('User')['Role'];
+            if("admin" == $user)
+            {
+                if(isset($_POST['Jednotka']))
+                {
+                    $array = array(
+                        
+                        $_POST['Jednotka'],
+                        $_POST['Ulice'],
+                        $_POST['Mesto'],
+                        $_POST['Pokoje'],
+                        $_POST['Popis'],
+                        (int)$_POST['Uzivatel'],
+                        
+                    );
+                    $aptId =(int)$_POST['aptId'];
+                    $data = $this->model->updateApartment($this->updateApt($array), $aptId);
+                    if($data == 0)
+                    {
+                        echo 0;
+                    }else{
+                        echo $data;
+                    }
+                    
+
+                }else
+                {
+                    echo "Vyplnit všechna pole !!";
+                }
+            }else{
+                header("Location:". URL . "Principal/principal");    
+            }
+        }else
+        {
+            header("Location:". URL . "Principal/principal");
+        }
     }
 }
