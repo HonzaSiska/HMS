@@ -4,6 +4,7 @@ var uploadpicture = new Uploadpicture();
 var cashReg = new CashRegister();
 var graphs = new Graphs();
 var apartment = new Apartments();
+var byt = new Byty();
 
 var loginUser = () => {
   user.loginUser();
@@ -50,11 +51,8 @@ let apartments = () => {
 var goMenu = () => {
   window.location.href = URL + "Principal/principal";
 };
-var archivo = (evt) => {
-  
+var archivo = (evt) => {  
   apartment.archivo(evt, "#fotos");
-
-
 };
 var archivo2 = (id) => {
   //var pics = document.getElementById(field).files;
@@ -62,11 +60,14 @@ var archivo2 = (id) => {
 //console.log(document.getElementById(id).files);
    //tahle funkce ted nic nedela
 }
-var insertApartment = () => {
-  
+var insertApartment = () => {  
   apartment.insertApartment();
 };
+var byty = () => {
+  window.location.href = URL + "Byty/byty";
+  //byt.vsechnyByty();
 
+}
 //----------------------------------------------------
 //VYMAZAT FOTKU KONKRETNIHO BYTU
 //----------------------------------------------------
@@ -83,8 +84,7 @@ var delete_img = (e) => {
   parent.remove();
 
   apartment.deleteImg(img, message,parent);
-  
-  
+ 
 }
 
 // document.getElementById('files').addEventListener('change', uploadpicture.archivo("fotos"), false);
@@ -305,6 +305,11 @@ $().ready(() => {
     //  document.querySelector(".aptFiles").addEventListener("change", archivo2, false);
      user.selectUser("apartment_user");
   }
+  if(URLactual == PATHNAME + "Byty/byty")
+  {
+    byt.vsechnyByty();
+  }
+  
 
   //----------------------------------------------------
   //Registrace Uzivatele
@@ -330,6 +335,18 @@ $().ready(() => {
       parent.innerHTML = "";
     }
   });
+  //------------------------------------------------
+//SET LARGE IMAGE BY CLICKING ON CAROUSEL PHOTO
+//------------------------------------------------
+$('.byt_image').click((e) => {
+  w = document.documentElement.clientWidth;
+  if(w >= 650)
+  {
+    byt.setLargeImage(e);
+  }
+ 
+
+})
 
   
    

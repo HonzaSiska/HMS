@@ -9,7 +9,7 @@ class Index extends Controllers{
         //  echo password_hash("Alena", PASSWORD_DEFAULT);
         // if(null == Session::getSession("User")){
             
-            $this->view->render($this,"index", null);
+            $this->view->render($this,"index", null,"admin");
             
         // }else{
         //      header("Location:".URL."Principal/principal");

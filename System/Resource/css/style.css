@@ -86,11 +86,11 @@ header {
 }
 
 .header_items div:first-child{
-    width: 70%;
+    width: 60%;
     
 }
 .header_items div:nth-child(2){
-    width: 30%;
+    width: 40%;
     
   
 }
@@ -148,12 +148,12 @@ aside{
     opacity: 0.5;
 }
 #log_out{
+    opacity: 0.6;
     color:black;
-    padding: 10px 10px;
-    border: 1px solid black;
+    padding: 5px 10px;
+    border: 4px solid rgb(37, 36, 53);
     float:right;
     margin: 15px;
-    
     /* display: inline-block; */
 
 }
@@ -369,7 +369,11 @@ footer p {
 
 
 /************ PRINCIPAL ******************/
-
+.line{
+    height: 1px;
+    background-color: lightgrey;
+    margin: 20px;
+}
 .menu_grid{
     display: grid;
     grid-template-columns: 45% 45%;
@@ -392,6 +396,12 @@ footer p {
     -moz-box-shadow: 0px 0px 20px -3px rgba(0, 0, 0,1);
     box-shadow: 0px 0px 20px -3px rgb(0, 0, 0);
     border-radius: 9px;
+}
+.pbl{
+    background-color: #94ca6d;
+    -webkit-box-shadow: 0px 0px 20px -3px #000000;
+    -moz-box-shadow: 0px 0px 20px -3px #000000;
+    box-shadow: 0px 0px 20px -3px #000000;
 }
 .menu_grid_item:hover{
     border: 8px solid #754cf0;
@@ -697,6 +707,108 @@ tbody tr:last-child td{
     to {left: 50%; }
   }
 
+/* ---------------- BYTY --------------------- */
+.container_public{
+    /* background-color: #E8E9EB; */
+    height: 100vh;
+    
+}
+#byty_mobile{
+    margin-top: 50px;
+    /* background-color: #E8E9EB; */
+}
+.byt_wrapper{
+    display: block;
+    /* background-color: #E8E9EB; */
+}
+.pictureSlide{
+    /* border: 1px solid gray; */
+    /* border-radius: 10px; */
+    width: 90%;
+    margin: auto;
+    /* position: static; */
+    /* -webkit-box-shadow: 0px 0px 17px -3px rgb(5, 5, 5,1);
+    -moz-box-shadow: 0px 0px 17px -3px rgba(5, 5, 5,1);
+    box-shadow: 0px 0px 17px -3px rgba(5, 5, 5,1); */
+}
+.large_image{
+    display: none;
+    width: 70%;
+    margin: auto;
+}
+.large_image img{
+    width: 100%;
+}
+
+.pictureSlide img{
+    width: 240px;
+    background-color: rgb(211, 211, 211);
+}
+#footer_public{
+    display: none;
+    position: absolute;
+    bottom: 0;
+    background-color: #404040;
+    z-index:6001;
+    margin-top: 300px;
+}
+#header_public{
+   
+    width: 100%;
+    background-color: #404040;
+    padding: 10px 0;
+}
+.slick-arrow{
+    background-color: rgb(5,5,5);
+   
+    width: 30px;
+    height: 30px;
+    z-index: 2000;
+    
+}
+.slick-arrow{
+    display:none;
+}
+.h2_public{
+    margin: 0;
+    padding: 20px 0;
+    color: #404040;
+    background: white;
+}
+.h3_public{
+    margin: auto;
+    padding: 20px 0;
+    color: #404040;
+}
+.top_section_byty{
+    position: relative;
+}
+.byt_info_wrapper{
+    width: 80%;
+    display:flex;
+    flex-direction: column;
+    /* flex-wrap: wrap;  */
+    
+    /* width: 30%; */
+    margin: 15px auto ;
+    /* background-color: white; */
+    margin-bottom:50px;
+    padding: 15px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    background-color: #ecc2b8;
+
+}
+.container_public p{
+    color:#404040;
+    text-align: left;
+    
+}
+.bold{
+    font-weight: bold;
+}
+
+
 
 
 
@@ -762,7 +874,8 @@ tbody tr:last-child td{
         width: 80px;
         margin:15px 20px;
         opacity: 0.5;
-    }#log_out{
+    }
+    /* #log_out{
         color:black;
         padding: 20px;
         border: 1px solid black;
@@ -770,6 +883,16 @@ tbody tr:last-child td{
     
          margin: 25px;
         
+        
+    
+    } */
+    #log_out{
+        opacity: 0.6;
+        color:black;
+        padding: 15px 10px;
+        border: 4px solid rgb(37, 36, 53);
+        float:right;
+        margin: 30px;
         /* display: inline-block; */
     
     }
@@ -825,8 +948,51 @@ tbody tr:last-child td{
         width: 70%;
     
     }
-   
-   
+
+
+    /* ================
+    BYTY
+    ================
+    */
+    .byt_wrapper{
+        border-bottom: 1px solid lightgrey;
+        margin: 0 auto 50px;
+        width: fit-content;
+        
+    }
+    .large_image{
+        display: block;
+        width: 500px;
+        margin: auto;
+    }
+    .large_image img {
+        width: 500px;
+
+    }
+    .byt_info_wrapper{
+        position: absolute;
+        left: 0px;
+        display:flex;
+        flex-direction: column;
+        width: 200px;
+        margin: 15px auto ;
+        margin-bottom:120px;
+        padding: 15px;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        background-color: #ecc2b8;
+    
+    }
+    .pictureSlide{
+        width: 900px;
+        margin: auto;
+        margin-top: 50px;
+        margin-bottom: 150px;
+
+    }
+    .pictureSlide img{
+        width: 245px;
+    }
     
   }
 

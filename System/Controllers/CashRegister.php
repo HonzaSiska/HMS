@@ -9,7 +9,7 @@ class CashRegister extends Controllers {
         // var_dump (Session::getSession('User')['Role']);
         if(Session::getSession('User')['Role'] == "admin"){
             
-            $this->view->render($this,"cashRegister",null);
+            $this->view->render($this,"cashRegister",null,"admin");
             //  $this->getUsers();
             
              

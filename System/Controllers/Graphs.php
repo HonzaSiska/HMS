@@ -10,7 +10,7 @@ class Graphs extends Controllers
     public function graphs(){
         if(Session::getSession("User")["Role"] == "admin")
         {
-            $this->view->render($this, "graphs", null);
+            $this->view->render($this, "graphs", null,"admin");
         }else{
             header("Location:" . URL . "Principal/principal");
         }

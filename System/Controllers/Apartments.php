@@ -8,7 +8,7 @@ class Apartments extends Controllers {
     public function apartments()
     {
         if(Session::getSession("User")["Role"] == 'admin'){
-            $this->view->render($this,"apartments",null);
+            $this->view->render($this,"apartments",null,"admin");
         }else{
             header("Location:". URL . "Principal/principal");
         }

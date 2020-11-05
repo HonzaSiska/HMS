@@ -60,4 +60,8 @@ anime({
   //     targets: '.shape1',
   //     rotateY: 360,
   //   });
+
+  
+ 
+  
 });

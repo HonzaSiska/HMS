@@ -10,7 +10,7 @@ class Users extends Controllers
         // var_dump (Session::getSession('User')['Role']);
         if(Session::getSession('User')['Role'] == "admin"){
             
-            $this->view->render($this,"users",null);
+            $this->view->render($this,"users",null,"admin");
             //$this->getUsers();
              
         }else{
