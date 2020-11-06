@@ -275,6 +275,8 @@ var closePopUpWindow = () => {
   document.getElementById('addAptPopUp').classList.add("closed");
 }
 
+
+
 $().ready(() => {
   let URLactual = window.location.pathname;
   user.userData(URLactual); // CONTROLA JESTLI JSME NA HLAVNI STRANE,JESTLI ANO,ScHOVEJ HEADER atd.
@@ -305,10 +307,7 @@ $().ready(() => {
     //  document.querySelector(".aptFiles").addEventListener("change", archivo2, false);
      user.selectUser("apartment_user");
   }
-  if(URLactual == PATHNAME + "Byty/byty")
-  {
-    byt.vsechnyByty();
-  }
+  
   
 
   //----------------------------------------------------
@@ -338,17 +337,19 @@ $().ready(() => {
   //------------------------------------------------
 //SET LARGE IMAGE BY CLICKING ON CAROUSEL PHOTO
 //------------------------------------------------
-$('.byt_image').click((e) => {
-  w = document.documentElement.clientWidth;
-  if(w >= 650)
-  {
-    byt.setLargeImage(e);
-  }
+  $('.byt_image').click((e) => {
+    console.log(e)
+    w = document.documentElement.clientWidth;
+    if(w >= 650)
+    {
+      
+      byt.setLargeImage(e);
+    }
  
 
-})
+  })
 
-  
+
    
     
   

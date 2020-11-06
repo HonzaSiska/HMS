@@ -10,11 +10,18 @@
                 require VIEWS.DFT."header_public.html";
             }
             
-            if($models == null){
+
+            if(file_exists(VIEWS.$controllers.'/'.$view.'.html'))
+            {
                 require VIEWS.$controllers.'/'.$view.'.html';
             }else{
-                require VIEWS.$controllers.'/'.$view.'.php';
+                 require VIEWS.$controllers.'/'.$view.'.php';
             }
+            // if($models == null){
+            //     require VIEWS.$controllers.'/'.$view.'.html';
+            // }else{
+            //     require VIEWS.$controllers.'/'.$view.'.php';
+            // }
             
             
             if($diff == "admin")
