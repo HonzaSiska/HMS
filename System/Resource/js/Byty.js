@@ -44,11 +44,21 @@ class Byty {
                 $(".byt_image").click((e)=>{
                      this.setLargeImage(e);
                 })
+                $(".large_image_byty").click((e)=>{
+                    // console.log(e.offset().top)
+                    
+                    console.log(e.screenX);
+                    console.log(e.screenY);
+                    console.log(e.target.offsetWidth)
+                    $(e.target).toggleClass('image_size_toggle');
+
+                })
                 
             }
+            
         )
+        
     }
-
     setLargeImage(e){
         console.log(e)
         let largeImage = e.target.parentElement.parentElement.parentElement;

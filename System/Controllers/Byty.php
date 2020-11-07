@@ -46,7 +46,7 @@ class Byty extends Controllers {
                         //----------------------------------------------------
                         
                         $output.='<div class="large_image">';
-                            $output.='<img src="../Resource/images/photos/images/'.$images[0]['FileName'].'" alt="">';
+                            $output.='<img class="large_image_byty" src="../Resource/images/photos/images/'.$images[0]['FileName'].'" alt="">';
                         $output.='</div>';
                     $output.='</div>';
                     //IMAGE CAROUSEL

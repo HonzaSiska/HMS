@@ -66,8 +66,8 @@ var insertApartment = () => {
 var byty = () => {
   window.location.href = URL + "Byty/byty";
   //byt.vsechnyByty();
-
 }
+
 //----------------------------------------------------
 //VYMAZAT FOTKU KONKRETNIHO BYTU
 //----------------------------------------------------
@@ -307,8 +307,7 @@ $().ready(() => {
     //  document.querySelector(".aptFiles").addEventListener("change", archivo2, false);
      user.selectUser("apartment_user");
   }
-  
-  
+
 
   //----------------------------------------------------
   //Registrace Uzivatele
@@ -345,12 +344,11 @@ $().ready(() => {
       
       byt.setLargeImage(e);
     }
- 
-
   })
 
-
-   
-    
+  // $('.large_image').click((e)=>{
+  //   console.log(e);
+  // })
+  
   
 });
