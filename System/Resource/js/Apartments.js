@@ -85,6 +85,12 @@ class Apartments extends Uploadpicture{
                 try {
                     document.querySelector("#apartment_list_admin").innerHTML=response;
                     // console.log(response);   
+                    $(".tt").mouseover((e)=>{
+                        getToolTip(e);
+                      })
+                    $(".tt").mouseleave((e)=>{
+                    removeToolTip(e);
+                    })
                 } catch (error) {
                     console.log(error) ;
                 }

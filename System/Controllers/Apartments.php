@@ -149,7 +149,7 @@ class Apartments extends Controllers {
                                     foreach($images as $img)
                                     {
                                         $output .='<div class="img-wrapper-edit">';
-                                            $output .= '<img onclick="delete_img(this);" data-img="'.$img['FileName'].'" class="delete_img"  src="'.URL. RQ .'images/icons/close.svg">';
+                                            $output .= '<img onclick="delete_img(this);" data-img="'.$img['FileName'].'" class="delete_img tt"  src="'.URL. RQ .'images/icons/close.svg" data-tt="Vymazat fotku '.$img['FileName'].'">';
                                           
                                             $output .='<img class="apt_img" src="'.URL. RQ .'images/photos/images/'.$img['FileName'].'" alt="fotka -'.$img['FileName'].'" data-id="'.$img['IdPhoto'].'">';
                                            

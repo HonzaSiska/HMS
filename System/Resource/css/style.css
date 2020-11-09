@@ -808,13 +808,20 @@ tbody tr:last-child td{
 
 .byt_info_wrapper span {
     color: grey;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
+    padding-left: 3px;
+}
+.byt_info_wrapper span:first-child {
+    font-size: 27px;
+    background-color: #d6d6d6;
 }
 .container_public p{
     color:#404040;
     text-align: left;
     
+    
 }
+
 .bold{
     font-weight: bold;
 }
@@ -834,6 +841,19 @@ tbody tr:last-child td{
 
 
 @media only screen and (min-width: 650px) {
+
+    #tool_tip{
+        position: absolute;
+        display:none;
+        padding: 10px;
+        background-color: rgb(59, 59, 59);
+        color: white;
+        border: 1px solid white;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 15px 5px rgba(0,0,0,0.39); 
+        box-shadow: 4px 4px 15px 5px rgba(0,0,0,0.39);
+        
+    }    
     #pop_up{
         width: 50%;
     }
@@ -986,7 +1006,10 @@ tbody tr:last-child td{
     }
     .large_image img {
         width: 100%;
-        border: 1px solid gray;
+        /* border: 1px solid gray; */
+        padding: 5px;
+        background-color: white;
+        
         /* -webkit-box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.36); 
         box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.36); */
 

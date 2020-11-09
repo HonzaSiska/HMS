@@ -6,6 +6,8 @@ var graphs = new Graphs();
 var apartment = new Apartments();
 var byt = new Byty();
 
+
+
 var loginUser = () => {
   user.loginUser();
 };
@@ -345,10 +347,17 @@ $().ready(() => {
       byt.setLargeImage(e);
     }
   })
+  //----------------------------------------
+  //TOOL TIP LOGIC 
+  //----------------------------------------
+  //pridej data-tt="text" k objectu a pridej class "tt" a tooltip se automaticky ukaze on hover
+  $(".tt").mouseover((e)=>{
+    getToolTip(e);
+  })
+  $(".tt").mouseleave((e)=>{
+    removeToolTip(e);
+  })
 
-  // $('.large_image').click((e)=>{
-  //   console.log(e);
-  // })
   
   
 });

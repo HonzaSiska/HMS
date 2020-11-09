@@ -46,3 +46,29 @@ const  monthsCzech = [
     "Listopad",
     "Prosinec",
 ]
+
+var getToolTip = (e) => {
+    console.log("X-",e.clientX);
+    console.log("Y-",e.clientY);
+    console.log("screenX-",e.screenX);
+    console.log("screenY-",e.screenY);
+    console.log(e);
+    let message = e.target.getAttribute('data-tt');
+    // console.log(message);
+    let top = e.pageY;
+    let right = e.pageX;
+    let width = screen.width;
+    let height = screen.height;
+
+    
+    let newTop = (top > height-200) ? top -40 : top + 50;
+    let newLeft = (right > width-200) ? right - 40 : right + 50;
+    document.querySelector('#tool_tip').style.left =newLeft +"px";
+    document.querySelector('#tool_tip').style.top = newTop+"px";
+    document.querySelector('#tool_tip').style.display = 'block';
+    document.querySelector('#tool_tip').innerHTML = message;
+}
+var removeToolTip = (e) => {
+    console.log(e.target);
+    document.querySelector('#tool_tip').style.display='none';
+}
