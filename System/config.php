@@ -1,4 +1,3 @@
-
 <?php
 const LBS = 'Library/';
 const VIEWS ='Views/';
@@ -14,5 +13,4 @@ define('URL', 'http://localhost/HomeManagementSystem/System/');
 
 
 ?>
-
 
