@@ -116,7 +116,7 @@ class Apartments_model extends Connect{
     public function deleteApartment($id)
     {
         $where = " WHERE IdApartment = :IdApartment";
-        $response = $this->db->delete("Apartment", $where, array("IdApartment" => (int)$id));
+        $response = $this->db->delete("apartment", $where, array("IdApartment" => (int)$id));
         if(is_bool($response))
         {
             echo 0;

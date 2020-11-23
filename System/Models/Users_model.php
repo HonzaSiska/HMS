@@ -52,7 +52,7 @@ class Users_model extends Connect{
         if(is_array($response)){
             $response = $response['results'];
             if(0 == count($response)){
-                $value = "(Name, Last_name, Email, Password, Role) VALUES(:Name, :LastName, :Email, :Password, :Role)";
+                $value = "(Name, Last_name, Email, Password, Role, Phone) VALUES(:Name, :LastName, :Email, :Password, :Role, '')";
                 $data = $this->db->insert("users",$user,$value);
                 if(is_bool($data)){
                     return 0;
