@@ -18,7 +18,7 @@ class User {
                 // alert("this is valid email");
                 // console.log($('.login_form').serialize());
                 $.post(
-                    "Index/userLogin",
+                    URL +"Index/userLogin",
                     $('.login_form').serialize(),
                     (response)=>{
                     

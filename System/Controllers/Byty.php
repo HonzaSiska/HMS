@@ -33,7 +33,7 @@ class Byty extends Controllers {
                             $output.='<span>'.$item['Street'].'</span>';
                             $output.='<span>'.$item['City'].'</span>' ;
                             $output.='<span>'.$item['Rooms'].' pokojů</span>' ;
-                            $output.='<span>'.$item['Street'].'</span>' ;
+                           
                             $output.='<span>'.$item['Description'].'</span>' ;
 
                         $output.='</div>';
