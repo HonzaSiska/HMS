@@ -48,12 +48,21 @@ class CashRegister_model extends Connect
                 $newArray = array($array->Date, $array->UserValue, 0, $array->Amount,$array->Description);
             }
 
-            $response = $this->db->insert("Transactions", $newArray, $value);
+            $response = $this->db->insert("transactions", $newArray, $value);
             if(is_bool($response))
             {
-                return 0;
+                if($response == true){
+                    return 0;
+                    
+                }
+                else{
+                    
+                    return 1;
+                }
             }else{
                 return 1;
+               
+
             }
         
         

@@ -454,6 +454,7 @@ th, td{
     padding: 5px 1px;
     font-size: 10px;
     text-align:center;
+    font-weight: bold;
 }
 
 th{
@@ -469,7 +470,7 @@ td{
     /* background-color: rgb(233, 233, 233); */
     /*border-bottom: 1px solid rgba(117,76,240,0.2);*/
     color: rgba(117,76,240,1);
-    font-weight: lighter;
+    /* font-weight: lighter; */
     color: gray;
 }
 
@@ -746,7 +747,7 @@ tbody tr:last-child td{
 }
 
 .pictureSlide img{
-    width: 161px;
+    width: 130px;
     background-color: rgb(211, 211, 211);
 }
 

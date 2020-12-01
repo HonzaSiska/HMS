@@ -36,8 +36,8 @@ class CashRegister extends Controllers {
                 $data = $this->model->getTrans($columns, $receivedDate, $this->page);
                 // $users =$this->model->getUsers("*");
                 
-                $allTrans = $this->model->getAllTrans("SUM(Credit) - SUM(Debit)");
-                $sum = ($allTrans[0]["SUM(Credit) - SUM(Debit)"]);
+                $allTrans = $this->model->getAllTrans("ROUND(SUM(Credit) - SUM(Debit),2)");
+                $sum = ($allTrans[0]["ROUND(SUM(Credit) - SUM(Debit),2)"]);
                 // $sum = $allTrans['Credit'] - $allTrans['Credit'];
                 // echo $sum;
                 $nav = $data['navigation'];
@@ -102,7 +102,7 @@ class CashRegister extends Controllers {
                     $data = $this->model->insertTrans($this->insertTransClass($array));
                         if($data == 0)
                         {
-                            return 0;
+                            echo 0;
                         }else
                         {
                             echo $data;
