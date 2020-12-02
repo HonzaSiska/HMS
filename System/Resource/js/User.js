@@ -181,7 +181,7 @@ class User {
                 try{
                     console.log(JSON.parse(response));
                     let item = JSON.parse(response);
-                    console.log(item[2].Name);
+                    
                     let count = 1;
                     if(0 < item.length){
                         
