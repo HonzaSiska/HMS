@@ -66,7 +66,7 @@ class CashRegister {
                 // -------------
                 // CHART credit
                 // -------------
-
+                if (myChart) myChart.destroy();
                 var ctx = document.getElementById('chartCredit').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'pie',
@@ -122,7 +122,7 @@ class CashRegister {
                 // -------------
                 // CHART credit
                 // -------------
-
+                
                 var ctx = document.getElementById('chartDebit').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'pie',

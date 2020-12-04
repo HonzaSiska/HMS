@@ -1,7 +1,7 @@
 class Graphs {
 
     getChart1() {
-
+        
         var year = document.querySelector("#chartYearInput").value;
         if (year == "") {
             year = new Date();
@@ -46,7 +46,7 @@ class Graphs {
                     // -------------
                     // CHART
                     // -------------
-
+                    if (myChart) myChart.destroy();
                     var ctx = document.getElementById('chart1').getContext('2d');
                     var myChart = new Chart(ctx, {
                         type: 'bar',
@@ -97,6 +97,7 @@ class Graphs {
     }
 
     getChart2() {
+        
         var year = document.querySelector("#chartYearInput").value;
         if (year == "") {
             year = new Date();
@@ -155,7 +156,7 @@ class Graphs {
                     // -------------
                     // CHART 2
                     // -------------
-
+                    if (myChart) myChart.destroy();
                     var ctx = document.getElementById('chart2').getContext('2d');
                     var myChart = new Chart(ctx, {
                         type: 'line',
