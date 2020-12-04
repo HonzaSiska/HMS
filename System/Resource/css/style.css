@@ -944,6 +944,10 @@ tbody tr:last-child td{
         display:grid;
         grid-template-columns: 1fr 1fr;
     }
+    .chartGrid{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+    }
     /* ==============
     APARTMENTS
     =============== */

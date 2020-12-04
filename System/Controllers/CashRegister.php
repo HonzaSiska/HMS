@@ -33,22 +33,25 @@ class CashRegister extends Controllers {
             {
                
                 $receivedDate =  strtotime($_POST['datum']);
+                
                 $data = $this->model->getTrans($columns, $receivedDate, $this->page);
                 // $users =$this->model->getUsers("*");
                 
+             
                 $allTrans = $this->model->getAllTrans("ROUND(SUM(Credit) - SUM(Debit),2)");
                 $sum = ($allTrans[0]["ROUND(SUM(Credit) - SUM(Debit),2)"]);
                 // $sum = $allTrans['Credit'] - $allTrans['Credit'];
                 // echo $sum;
                 $nav = $data['navigation'];
                 $data = $data['results'];
-                
+                $arrayIds =array();
                 if(is_array($data))
                 {
                     $count = 0;
                     foreach($data as $item)
                     {   
                         //Vytahni uzivatele podle id ulezene v tablu transakci
+                        
                         $users =$this->model->getUsers("Name, Last_name",$item['IdUser']);
 
                         //ODSTRAN NULY Z CREDITU A DEBITU
@@ -68,8 +71,44 @@ class CashRegister extends Controllers {
                         $credit += $item["Credit"];
                         $debit += $item["Debit"];
                         $count++;
+                        
+                        array_push($arrayIds ,$item['IdUser']);
                        
                     }
+                    
+                    $creditSumsAndUserArray =array();
+                    $debitSumsAndUserArray =array();
+                    $uniqueIds = array_unique($arrayIds);
+                    //get credit and debit sums
+                    foreach( $uniqueIds as $userId){
+                        //get user name
+                        $person = $this->model->getUsers("Name,Last_name", $userId);
+                        $person = $person[0];
+                        $fullName =$person['Name'] . " " . $person['Last_name'];
+                        //credits
+                        $sumCreditPerUser = $this->model->getSum("SUM(Credit)", $receivedDate, $userId);
+                        
+                        $sumCreditPerUser= $sumCreditPerUser['results'][0]["SUM(Credit)"];
+                        //var_dump($sumCreditPerUser);
+                        $credit_array = array(
+                            "name" => $fullName,
+                            "creditSum" =>  $sumCreditPerUser
+                        );
+                        array_push($creditSumsAndUserArray, $credit_array);
+                        //var_dump($creditSumsAndUserArray);
+                        //debits
+                        $sumDebitPerUser = $this->model->getSum("SUM(Debit)", $receivedDate, $userId);
+                        $sumDebitPerUser= $sumDebitPerUser['results'][0]["SUM(Debit)"];
+                        //var_dump($sumDebitPerUser);
+                         $debit_array =array(
+                            "name" => $fullName,
+                            "debitSum" =>  $sumDebitPerUser
+                         );
+                         array_push($debitSumsAndUserArray, $debit_array);
+                         //var_dump($debitSumsAndUserArray);
+                    }
+                  
+
                     $diff = $credit - $debit;
                     $result .= "<tr><td></td><td></td><td></td><td>Zbytek<span class='diff'> $diff</span></td><td class='credit'>$credit</td><td class='debit'>$debit</td><td></td></tr>";
                     //echo $result;
@@ -78,11 +117,13 @@ class CashRegister extends Controllers {
                 $output = array(
                     "table" => $result,
                     "sum" => $sum,
-                    "nav" => $nav
+                    "nav" => $nav,
+                    "graphs"=> [$creditSumsAndUserArray,$debitSumsAndUserArray]
 
                 );
+                //var_dump($output);
                 
-                echo json_encode($output);
+                 echo json_encode($output);
                 
                 
             }

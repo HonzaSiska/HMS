@@ -7,6 +7,27 @@ class CashRegister_model extends Connect
         parent::__construct();
         
     }
+    function getSum($columns, $date, $id){
+        $where = " WHERE MONTH(Date) = :Month AND YEAR(Date)= :Year AND IdUser = :IdUser";
+        $month = date('m', $date);
+        $year = date('Y', $date);
+        $array = array(
+            'Month' => $month,
+            'Year' => $year,
+            'IdUser' => $id
+        );
+        $param = $array;
+        $response = $this->db->select1($columns,"transactions",$where,$param);
+        if(is_Array($response))
+        {
+            return $response;
+            //return $response = $response['results'];
+        }else
+        {
+            echo $response;
+        }
+    }
+
 
     function getTrans($columns, $date, $model)
     {   
